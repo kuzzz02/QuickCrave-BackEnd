@@ -12,3 +12,7 @@ public class QuickCraveBackEndApplication {
     }
 
 }
+
+// create database qcdb;
+// create user 'qc'@'%' identified by 'qc123456';
+// grant all on qcdb.* to 'qc'@'%';
