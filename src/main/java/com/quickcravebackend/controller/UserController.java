@@ -1,45 +1,65 @@
 package com.quickcravebackend.controller;
 
-import com.quickcravebackend.model.UserModel;
-import com.quickcravebackend.service.UserLoginService_Impl;
+import com.quickcravebackend.model.User;
+import com.quickcravebackend.service.UserService_Imp;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+
+import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class UserController {
     @Autowired
-    UserLoginService_Impl userLoginService_Impl;
+    private UserService_Imp userService_Imp;
 
-    @RequestMapping("/Login")
-    public String Login(){
-        return "login"; //TODO
+    @PostMapping ("/insert")
+    public Integer insert(String username, String password){
+        return userService_Imp.insert(username,password);
     }
 
-    @RequestMapping("/SignUp")
-    public String Register() {
-        return "signup"; //TODO
+    @GetMapping("/selectAll")
+    public List<User> selectAll() {
+        return userService_Imp.selectAll();
+    }
+    @GetMapping("/selectByName")
+    public User selectByName(String username) {
+        return userService_Imp.selectByName(username);
     }
 
-    @RequestMapping("/LoginSuccess")
-    public String LoginSuccess(Model model, UserModel UserModel){
-        UserModel user = userLoginService_Impl.queryByName(UserModel.getUsername());
-        if(user != null){
-            System.out.println(user.toString());
+    @DeleteMapping("/delete")
+    public Integer delete(Long id){
+        return userService_Imp.delete(id);
+    }
+
+    @PutMapping("/update")
+    public Integer update(Long id){
+        return userService_Imp.update(id);
+    }
+
+    @GetMapping("/login")
+    public String Login(String username, String password) {
+        if(selectByName(username) != null){
+            User user = selectByName(username);
+            String cur_name = user.getUsername();
+            String cur_password = user.getPassword();
+            if ((Objects.equals(cur_name, username)) && (Objects.equals(cur_password, password))) {
+                return "success";
+            }
+        }
+        return "fail";
+    }
+
+    @PostMapping("/signup")
+    public String Register(String username, String password) {
+        if(selectByName(username) == null){
+            insert(username,password);
             return "success";
         }
-        else{
-            model.addAttribute("data","Please Sign Up");
-            return "signup";
-        }
-    }
-
-    @RequestMapping("/SignUpSuccess")
-    public String SignUpSuccess(Model model, UserModel UserModel){
-        int insert = userLoginService_Impl.insert(UserModel);
-        System.out.println("Sign Up succeed!");
-        model.addAttribute("data","Log in");
-        return "login";
+        return "fail";
     }
 }
