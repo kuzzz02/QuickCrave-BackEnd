@@ -17,31 +17,31 @@ public class UserController {
     @Autowired
     private UserService_Imp userService_Imp;
 
-    @PostMapping ("/insert")
+    @PostMapping ("/user/insert")
     public Integer insert(String username, String password){
         return userService_Imp.insert(username,password);
     }
 
-    @GetMapping("/selectAll")
+    @GetMapping("/user/selectAll")
     public List<User> selectAll() {
         return userService_Imp.selectAll();
     }
-    @GetMapping("/selectByName")
+    @GetMapping("/user/selectByName")
     public User selectByName(String username) {
         return userService_Imp.selectByName(username);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/user/delete")
     public Integer delete(Long id){
         return userService_Imp.delete(id);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/user/update")
     public Integer update(Long id){
         return userService_Imp.update(id);
     }
 
-    @GetMapping("/login")
+    @GetMapping("/user/login")
     public String Login(String username, String password) {
         if(selectByName(username) != null){
             User user = selectByName(username);
@@ -54,7 +54,7 @@ public class UserController {
         return "fail";
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/user/signup")
     public String Register(String username, String password) {
         if(selectByName(username) == null){
             insert(username,password);

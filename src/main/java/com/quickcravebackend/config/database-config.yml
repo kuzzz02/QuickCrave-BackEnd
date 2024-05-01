@@ -3,8 +3,11 @@ create database: create database qcdb;
 create user: create user 'qc'@'%' identified by 'qc123456';
 grant privileges: grant all on qcdb.* to 'qc'@'%';
 
-alter table qcdb.user
-modify id bigint auto_increment;
+  alter table qcdb.user
+  modify id bigint auto_increment;
   
-alter table qcdb.user
-auto_increment = 1;
+  alter table qcdb.user
+  auto_increment = 1;
+  
+  alter table qcdb.user
+  modify username varchar(255) not null;

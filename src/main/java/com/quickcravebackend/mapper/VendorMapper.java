@@ -1,0 +1,23 @@
+package com.quickcravebackend.mapper;
+
+import com.quickcravebackend.model.Vendor;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Mapper
+@Repository
+public interface VendorMapper {
+    @Options(useGeneratedKeys = true,keyProperty="id",keyColumn="id")
+    Integer insert (String name, String password);
+
+    List<Vendor> selectAll();
+
+    Vendor selectByName(String name);
+
+    Integer delete(Long id);
+
+    Integer update(Long id);
+}

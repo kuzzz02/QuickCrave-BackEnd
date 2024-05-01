@@ -10,14 +10,17 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User{
+public class Vendor {
     @Id
     private Long id;
 
-    private String username;
+    private String name;
     private String password;
 
-/**
- * TODO:more fields to be added
- */
+    private String email;
+    private String phone;
+    private String address;
+    private String state;
+    private String description;
+    private String image;
 }
