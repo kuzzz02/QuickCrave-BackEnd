@@ -6,6 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-public class User extends Base{
+public class Delivery extends  Base{
 
 }

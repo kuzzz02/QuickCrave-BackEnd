@@ -45,7 +45,7 @@ public class UserController {
     public String Login(String username, String password) {
         if(selectByName(username) != null){
             User user = selectByName(username);
-            String cur_name = user.getUsername();
+            String cur_name = user.getName();
             String cur_password = user.getPassword();
             if ((Objects.equals(cur_name, username)) && (Objects.equals(cur_password, password))) {
                 return "success";
