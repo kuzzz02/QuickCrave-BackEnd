@@ -11,12 +11,14 @@ import java.util.List;
 @Repository
 public interface UserMapper {
     @Options(useGeneratedKeys = true,keyProperty="id",keyColumn="id")
-    Integer insert(String username, String password);
+    Integer insert(String name, String password);
     List<User> selectAll();
 
-    User selectByName(String username);
+    User selectByName(String name);
 
     Integer delete(Long id);
 
     Integer update(Long id);
+
+    User selectById(Long id);
 }

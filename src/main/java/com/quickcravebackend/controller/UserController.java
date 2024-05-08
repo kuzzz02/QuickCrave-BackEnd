@@ -2,24 +2,21 @@ package com.quickcravebackend.controller;
 
 import com.quickcravebackend.model.User;
 import com.quickcravebackend.service.UserService_Imp;
-import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
 
-@Controller
+@RestController
+@CrossOrigin(origins = "http://localhost:8081")
 public class UserController {
     @Autowired
     private UserService_Imp userService_Imp;
 
     @PostMapping ("/user/insert")
-    public Integer insert(String username, String password){
-        return userService_Imp.insert(username,password);
+    public Integer insert(String name, String password){
+        return userService_Imp.insert(name,password);
     }
 
     @GetMapping("/user/selectAll")
@@ -27,8 +24,8 @@ public class UserController {
         return userService_Imp.selectAll();
     }
     @GetMapping("/user/selectByName")
-    public User selectByName(String username) {
-        return userService_Imp.selectByName(username);
+    public User selectByName(String name) {
+        return userService_Imp.selectByName(name);
     }
 
     @DeleteMapping("/user/delete")
@@ -42,12 +39,12 @@ public class UserController {
     }
 
     @GetMapping("/user/login")
-    public String Login(String username, String password) {
-        if(selectByName(username) != null){
-            User user = selectByName(username);
+    public String Login(String name, String password) {
+        if(selectByName(name) != null){
+            User user = selectByName(name);
             String cur_name = user.getName();
             String cur_password = user.getPassword();
-            if ((Objects.equals(cur_name, username)) && (Objects.equals(cur_password, password))) {
+            if ((Objects.equals(cur_name, name)) && (Objects.equals(cur_password, password))) {
                 return "success";
             }
         }
@@ -55,11 +52,16 @@ public class UserController {
     }
 
     @PostMapping("/user/signup")
-    public String Register(String username, String password) {
-        if(selectByName(username) == null){
-            insert(username,password);
+    public String Register(String name, String password) {
+        if(selectByName(name) == null){
+            insert(name,password);
             return "success";
         }
         return "fail";
+    }
+
+    @GetMapping("/user/selectById")
+    public User selectById(Long id){
+        return userService_Imp.selectById(id);
     }
 }
