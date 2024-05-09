@@ -9,55 +9,57 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService_Imp userService_Imp;
 
-    @PostMapping ("/user/insert")
+    @PostMapping ("insert")
     public Integer insert(String name, String password){
         return userService_Imp.insert(name,password);
     }
 
-    @GetMapping("/user/selectAll")
+    @GetMapping("/selectAll")
     public List<User> selectAll() {
         return userService_Imp.selectAll();
     }
-    @GetMapping("/user/selectByName")
+    @GetMapping("/selectByName")
     public User selectByName(String name) {
         return userService_Imp.selectByName(name);
     }
 
-    @DeleteMapping("/user/delete")
+    @DeleteMapping("/delete")
     public Integer delete(Long id){
         return userService_Imp.delete(id);
     }
 
-    @PutMapping("/user/update")
+    @PutMapping("/update")
     public Integer update(Long id){
         return userService_Imp.update(id);
     }
 
-    @GetMapping("/user/login")
-    public String Login(String name, String password) {
+    @GetMapping("/login")
+    public User Login(String name, String password) {
         if(selectByName(name) != null){
             User user = selectByName(name);
             String cur_name = user.getName();
             String cur_password = user.getPassword();
             if ((Objects.equals(cur_name, name)) && (Objects.equals(cur_password, password))) {
-                return "success";
+                return selectByName(name);
             }
         }
-        return "fail";
+        return null;
     }
 
-    @PostMapping("/user/signup")
-    public String Register(String name, String password) {
+    @PostMapping("/signup")
+    @ResponseBody
+    public User Register(String name, String password) {
         if(selectByName(name) == null){
             insert(name,password);
-            return "success";
+            return selectByName(name);
         }
-        return "fail";
+        return null;
     }
 
     @GetMapping("/user/selectById")
