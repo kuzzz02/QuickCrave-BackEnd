@@ -3,6 +3,7 @@ package com.quickcravebackend.controller;
 import com.quickcravebackend.model.User;
 import com.quickcravebackend.service.UserService_Imp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,27 +40,23 @@ public class UserController {
         return userService_Imp.update(id);
     }
 
-    @GetMapping("/login")
-    public User Login(String name, String password) {
-        if(selectByName(name) != null){
-            User user = selectByName(name);
-            String cur_name = user.getName();
-            String cur_password = user.getPassword();
-            if ((Objects.equals(cur_name, name)) && (Objects.equals(cur_password, password))) {
-                return selectByName(name);
-            }
+    @PostMapping("/login")
+    public ResponseEntity<User> Login(@RequestBody User user) {
+        User newUser = selectByName(user.getName());
+        if(newUser != null && Objects.equals(newUser.getPassword(), user.getPassword())){
+            return ResponseEntity.ok(newUser);
         }
-        return null;
+        return ResponseEntity.badRequest().build();
     }
 
     @PostMapping("/signup")
-    @ResponseBody
-    public User Register(String name, String password) {
-        if(selectByName(name) == null){
-            insert(name,password);
-            return selectByName(name);
+    public ResponseEntity<User> Register(@RequestBody User user) {
+        if(user.getName() != null && user.getPassword() != null && userService_Imp.selectByName(user.getName()) == null){
+            insert(user.getName(),user.getPassword());
+            User newUser = selectByName(user.getName());
+            return ResponseEntity.ok(newUser);
         }
-        return null;
+        return ResponseEntity.badRequest().build();
     }
 
     @GetMapping("/user/selectById")
