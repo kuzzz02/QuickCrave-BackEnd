@@ -30,9 +30,19 @@ public class UserController {
         return userService_Imp.selectByName(name);
     }
 
+    @GetMapping("/selectById")
+    public User selectById(Long id){
+        return userService_Imp.selectById(id);
+    }
+
     @DeleteMapping("/delete")
     public Integer delete(Long id){
         return userService_Imp.delete(id);
+    }
+
+    @DeleteMapping("/deleteAll")
+    public Integer deleteAll(){
+        return userService_Imp.deleteAll();
     }
 
     @PutMapping("/update")
@@ -51,7 +61,7 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<User> Register(@RequestBody User user) {
-        if(user.getName() != null && user.getPassword() != null && userService_Imp.selectByName(user.getName()) == null){
+        if(user.getName() != null && user.getPassword() != null && selectByName(user.getName()) == null){
             insert(user.getName(),user.getPassword());
             User newUser = selectByName(user.getName());
             return ResponseEntity.ok(newUser);
@@ -59,8 +69,4 @@ public class UserController {
         return ResponseEntity.badRequest().build();
     }
 
-    @GetMapping("/user/selectById")
-    public User selectById(Long id){
-        return userService_Imp.selectById(id);
-    }
 }

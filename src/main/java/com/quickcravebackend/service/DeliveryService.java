@@ -1,22 +1,22 @@
 package com.quickcravebackend.service;
 
-import com.quickcravebackend.model.User;
+import com.quickcravebackend.model.Delivery;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public interface UserService {
+public interface DeliveryService {
     Integer insert(String name, String password);
-    List<User> selectAll();
+    List<Delivery> selectAll();
 
-    User selectByName(String name);
+    Delivery selectByName(String name);
 
     Integer delete(Long id);
 
     Integer update(Long id);
 
-    User selectById(Long id);
+    Delivery selectById(Long id);
 
     Integer deleteAll();
 }

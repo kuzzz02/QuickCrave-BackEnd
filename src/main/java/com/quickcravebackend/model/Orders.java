@@ -14,16 +14,13 @@ public class Orders {
     @Id
     private Long id;
 
-    private String name;
-    private String description;
-    private String image;
+    private Long goods_id;
+    private Long user_id;
+    private Long vendor_id;
+    private Long delivery_id;
+
     private String state;
     private String date;
-
-    private String customer;
-    private String vendor;
-    private String delivery;
     private String payment;
     private String total;
-
 }

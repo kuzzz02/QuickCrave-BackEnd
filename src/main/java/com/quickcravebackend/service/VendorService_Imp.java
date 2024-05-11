@@ -35,4 +35,14 @@ public class VendorService_Imp implements VendorService{
     public Integer update(Long id){
         return vendorMapper.update(id);
     }
+
+    @Override
+    public Vendor selectById(Long id){
+        return vendorMapper.selectById(id);
+    }
+
+    @Override
+    public Integer deleteAll(){
+        return vendorMapper.deleteAll();
+    }
 }

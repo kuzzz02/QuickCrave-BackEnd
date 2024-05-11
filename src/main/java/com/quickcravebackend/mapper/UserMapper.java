@@ -21,4 +21,6 @@ public interface UserMapper {
     Integer update(Long id);
 
     User selectById(Long id);
+
+    Integer deleteAll();
 }

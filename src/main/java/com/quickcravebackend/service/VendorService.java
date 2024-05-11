@@ -15,4 +15,8 @@ public interface VendorService {
     Integer delete(Long id);
 
     Integer update(Long id);
+
+    Vendor selectById(Long id);
+
+    Integer deleteAll();
 }

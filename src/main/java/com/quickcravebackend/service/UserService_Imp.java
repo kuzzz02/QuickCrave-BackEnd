@@ -40,4 +40,9 @@ public class UserService_Imp implements UserService{
     public User selectById(Long id){
         return userMapper.selectById(id);
     }
+
+    @Override
+    public Integer deleteAll(){
+        return userMapper.deleteAll();
+    }
 }

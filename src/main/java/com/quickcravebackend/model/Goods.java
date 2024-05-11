@@ -25,4 +25,6 @@ public class Goods {
     private String quantity;
     private String discount;
 
+    private Long vendor_id;
+
 }

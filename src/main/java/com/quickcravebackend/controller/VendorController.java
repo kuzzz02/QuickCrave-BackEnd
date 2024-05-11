@@ -1,65 +1,72 @@
 package com.quickcravebackend.controller;
 
+import com.quickcravebackend.model.User;
 import com.quickcravebackend.model.Vendor;
 import com.quickcravebackend.service.VendorService_Imp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
 
-@Controller
+@RestController
+@CrossOrigin
+@RequestMapping("/vendor")
 public class VendorController {
     @Autowired
     private VendorService_Imp vendorService_Imp;
 
-    @PostMapping("/vendor/insert")
+    @PostMapping("/insert")
     public Integer insert(String name, String password){
         return vendorService_Imp.insert(name,password);
     }
 
-    @GetMapping("/vendor/selectAll")
+    @GetMapping("/selectAll")
     public List<Vendor> selectAll() {
         return vendorService_Imp.selectAll();
     }
-    @GetMapping("/vendor/selectByName")
+    @GetMapping("/selectByName")
     public Vendor selectByName(String name) {
         return vendorService_Imp.selectByName(name);
     }
 
-    @DeleteMapping("/vendor/delete")
+    @GetMapping("/selectById")
+    public Vendor selectById(Long id){
+        return vendorService_Imp.selectById(id);
+    }
+
+    @DeleteMapping("/delete")
     public Integer delete(Long id){
         return vendorService_Imp.delete(id);
     }
 
-    @PutMapping("/vendor/update")
+    @DeleteMapping("/deleteAll")
+    public Integer deleteAll(){
+        return vendorService_Imp.deleteAll();
+    }
+
+    @PutMapping("/update")
     public Integer update(Long id){
         return vendorService_Imp.update(id);
     }
 
-    @GetMapping("vendor/login")
-    public String Login(String name, String password){
-        if(selectByName(name) != null){
-            Vendor vendor = selectByName(name);
-            String cur_name = vendor.getName();
-            String cur_password = vendor.getPassword();
-            if((Objects.equals(cur_name,name)) && (Objects.equals(cur_password,password))){
-                return "success";
-            }
+    @GetMapping("/login")
+    public ResponseEntity<Vendor> Login(Vendor vendor){
+        Vendor newVendor = selectByName(vendor.getName());
+        if(newVendor != null && Objects.equals(newVendor.getPassword(), vendor.getPassword())){
+            return ResponseEntity.ok(newVendor);
         }
-        return "fail";
+        return ResponseEntity.badRequest().build();
     }
 
-    @PostMapping("vendor/signup")
-    public String Register(String name, String password){
-        if(selectByName(name) != null) {
-            insert(name,password);
-            return "success";
+    @PostMapping("/signup")
+    public ResponseEntity<Vendor> Register(@RequestBody Vendor vendor) {
+        if(vendor.getName() != null && vendor.getPassword() != null && selectByName(vendor.getName()) == null){
+            insert(vendor.getName(),vendor.getPassword());
+            Vendor newVendor = selectByName(vendor.getName());
+            return ResponseEntity.ok(newVendor);
         }
-        return "fail";
+        return ResponseEntity.badRequest().build();
     }
 }
