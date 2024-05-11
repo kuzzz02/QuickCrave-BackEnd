@@ -19,4 +19,6 @@ public interface VendorService {
     Vendor selectById(Long id);
 
     Integer deleteAll();
+
+    List<Vendor> selectVendorWithGoods(Long id);
 }

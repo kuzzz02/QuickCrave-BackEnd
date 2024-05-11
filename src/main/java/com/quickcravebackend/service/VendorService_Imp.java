@@ -45,4 +45,9 @@ public class VendorService_Imp implements VendorService{
     public Integer deleteAll(){
         return vendorMapper.deleteAll();
     }
+
+    @Override
+    public List<Vendor> selectVendorWithGoods(Long id){
+        return vendorMapper.selectVendorWithGoods(id);
+    }
 }

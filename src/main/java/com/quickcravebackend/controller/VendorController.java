@@ -69,4 +69,9 @@ public class VendorController {
         }
         return ResponseEntity.badRequest().build();
     }
+
+    @GetMapping("/selectVendorWithGoods")
+    public List<Vendor> selectVendorWithGoods(Long id){
+        return vendorService_Imp.selectVendorWithGoods(id);
+    }
 }

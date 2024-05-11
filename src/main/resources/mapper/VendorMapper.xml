@@ -6,28 +6,6 @@
 
 <mapper namespace="com.quickcravebackend.mapper.VendorMapper">
 
-<!--    <resultMap id="goodsMap" type="com.quickcravebackend.model.Vendor">-->
-<!--        <id property="id" column="id" />-->
-<!--        <collection property="goods" column="id" select="com.quickcravebackend.mapper.GoodsMapper.selectByVendorId" javaType="List" ofType="com.quickcravebackend.model.Goods"/>-->
-<!--    </resultMap>-->
-
-<!--    <resultMap id="vendorGoodsMap" type="com.quickcravebackend.model.Vendor">-->
-<!--        <id property="id" column="id" />-->
-<!--        <result property="name" column="name" />-->
-<!--        <collection property="goods" ofType="com.quickcravebackend.model.Goods">-->
-<!--            <id property="id" column="id" />-->
-<!--            <result property="name" column="name" />-->
-<!--            <result property="description" column="description" />-->
-<!--            <result property="image" column="image" />-->
-<!--            <result property="state" column="state" />-->
-<!--            <result property="date" column="date" />-->
-<!--            <result property="price" column="price" />-->
-<!--            <result property="category" column="category" />-->
-<!--            <result property="quantity" column="quantity" />-->
-<!--            <result property="discount" column="discount" />-->
-<!--        </collection>-->
-<!--    </resultMap>-->
-
     <insert id="insert" parameterType="com.quickcravebackend.model.Vendor">
         insert into vendor (name,password) values (#{name},#{password})
     </insert>
@@ -55,5 +33,11 @@
     <delete id="deleteAll">
         delete  from vendor
     </delete>
+
+    <select id="selectVendorWithGoods" resultType="com.quickcravebackend.model.Vendor" parameterType="Long">
+        select v.*, g.* from vendor v
+        left join goods g on v.id = g.vendor_id
+        where v.id = #{id}
+    </select>
 
 </mapper>
