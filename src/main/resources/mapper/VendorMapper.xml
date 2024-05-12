@@ -34,10 +34,9 @@
         delete  from vendor
     </delete>
 
-    <select id="selectVendorWithGoods" resultType="com.quickcravebackend.model.Vendor" parameterType="Long">
-        select v.*, g.* from vendor v
-        left join goods g on v.id = g.vendor_id
-        where v.id = #{id}
+    <select id="selectVendorWithGoods" resultType="com.quickcravebackend.model.Goods" parameterType="Long">
+        select v.*, g.* from vendor v, goods g
+        where (v.id = #{id} and g.vendor_id = v.id)
     </select>
 
 </mapper>
