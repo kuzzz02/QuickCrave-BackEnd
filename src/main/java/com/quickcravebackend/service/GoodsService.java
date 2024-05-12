@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface GoodsService {
-    Integer insert(String name, String description, String image, String state, String date, String price, String category, String quantity, String discount);
+    Integer insert(String name, String description, String image, String state, String date, String price, String category, String quantity, String discount, Long vendor_id);
 
     Integer delete(Long id);
 
@@ -40,4 +40,6 @@ public interface GoodsService {
     Integer updateDiscount(Long id, String discount);
 
     Integer updateQuantity(Long id, String quantity);
+
+    Integer updateVendor(Long id, Long vendor_id);
 }

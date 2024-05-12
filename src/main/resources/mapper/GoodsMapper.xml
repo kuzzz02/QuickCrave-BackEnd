@@ -7,7 +7,7 @@
 <mapper namespace="com.quickcravebackend.mapper.GoodsMapper">
 
     <insert id="insert" parameterType="com.quickcravebackend.model.Goods">
-        insert into goods (name,description,image,state,date,price,category,quantity,discount) values (#{name},#{description},#{image},#{state},#{date},#{price},#{category},#{quantity},#{discount})
+        insert into goods (name,description,image,state,date,price,category,quantity,discount,vendor_id) values (#{name},#{description},#{image},#{state},#{date},#{price},#{category},#{quantity},#{discount},#{vendor_id})
     </insert>
     
     <select id="selectAll" resultType="com.quickcravebackend.model.Goods">
@@ -72,6 +72,10 @@
 
     <update id="updateDiscount" parameterType="com.quickcravebackend.model.Goods">
         update goods set discount = #{discount} where id = #{id}
+    </update>
+
+    <update id="updateVendor" parameterType="com.quickcravebackend.model.Goods">
+        update goods set vendor_id = #{vendor_id} where id = #{id}
     </update>
 
 </mapper>

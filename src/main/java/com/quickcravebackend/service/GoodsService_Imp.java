@@ -13,8 +13,8 @@ public class GoodsService_Imp implements GoodsService{
     private GoodsMapper goodsMapper;
 
     @Override
-    public Integer insert(String name, String description, String image, String state, String date, String price, String category, String quantity, String discount) {
-        return goodsMapper.insert(name, description, image, state, date, price, category, quantity, discount);
+    public Integer insert(String name, String description, String image, String state, String date, String price, String category, String quantity, String discount, Long vendor_id) {
+        return goodsMapper.insert(name, description, image, state, date, price, category, quantity, discount, vendor_id);
     }
 
     @Override
@@ -95,5 +95,10 @@ public class GoodsService_Imp implements GoodsService{
     @Override
     public Integer updateQuantity(Long id, String quantity) {
         return goodsMapper.updateQuantity(id, quantity);
+    }
+
+    @Override
+    public Integer updateVendor(Long id, Long vendor_id) {
+        return goodsMapper.updateVendor(id, vendor_id);
     }
 }

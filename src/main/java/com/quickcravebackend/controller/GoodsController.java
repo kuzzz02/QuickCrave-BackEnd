@@ -15,8 +15,8 @@ public class GoodsController {
     private GoodsService_Imp goodsService_Imp;
 
     @PostMapping("/insert")
-    public Integer insert(String name, String description, String image, String state, String date, String price, String category, String quantity, String discount){
-        return goodsService_Imp.insert(name, description, image, state, date, price, category, quantity, discount);
+    public Integer insert(String name, String description, String image, String state, String date, String price, String category, String quantity, String discount, Long vendor_id){
+        return goodsService_Imp.insert(name, description, image, state, date, price, category, quantity, discount, vendor_id);
     }
 
     @DeleteMapping("/delete")
@@ -97,5 +97,10 @@ public class GoodsController {
     @PutMapping("/updateQuantity")
     public Integer updateQuantity(Long id, String quantity){
         return goodsService_Imp.updateQuantity(id, quantity);
+    }
+
+    @PutMapping("/updateVendor")
+    public Integer updateVendor(Long id, Long vendor_id){
+        return goodsService_Imp.updateVendor(id, vendor_id);
     }
 }
