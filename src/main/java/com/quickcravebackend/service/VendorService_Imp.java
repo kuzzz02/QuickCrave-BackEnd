@@ -13,8 +13,8 @@ public class VendorService_Imp implements VendorService{
     private VendorMapper vendorMapper;
 
     @Override
-    public Integer insert(String name, String password){
-        return vendorMapper.insert(name,password);
+    public Integer insert(String name, String password, String email, String phone, String address, String state, String date, String portrait, String description, String image, Long time, Long fee, String quantity){
+        return vendorMapper.insert(name, password, email, phone, address, state, date, portrait, description, image, time, fee, quantity);
     }
 
     @Override

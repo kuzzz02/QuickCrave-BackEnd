@@ -18,8 +18,8 @@ public class VendorController {
     private VendorService_Imp vendorService_Imp;
 
     @PostMapping("/insert")
-    public Integer insert(String name, String password){
-        return vendorService_Imp.insert(name,password);
+    public Integer insert(String name, String password, String email, String phone, String address, String state, String date, String portrait, String description, String image, Long time, Long fee, String quantity){
+        return vendorService_Imp.insert(name, password, email, phone, address, state, date, portrait, description, image, time, fee, quantity);
     }
 
     @GetMapping("/selectAll")
@@ -63,7 +63,7 @@ public class VendorController {
     @PostMapping("/signup")
     public ResponseEntity<Vendor> Register(@RequestBody Vendor vendor) {
         if(vendor.getName() != null && vendor.getPassword() != null && selectByName(vendor.getName()) == null){
-            insert(vendor.getName(),vendor.getPassword());
+            insert(vendor.getName(), vendor.getPassword(), vendor.getEmail(), vendor.getPhone(), vendor.getAddress(), vendor.getState(), vendor.getDate(), vendor.getPortrait(), vendor.getDescription(), vendor.getImage(), vendor.getTime(), vendor.getFee(), vendor.getQuantity());
             Vendor newVendor = selectByName(vendor.getName());
             return ResponseEntity.ok(newVendor);
         }

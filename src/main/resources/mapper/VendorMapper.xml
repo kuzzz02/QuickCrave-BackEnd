@@ -7,7 +7,7 @@
 <mapper namespace="com.quickcravebackend.mapper.VendorMapper">
 
     <insert id="insert" parameterType="com.quickcravebackend.model.Vendor">
-        insert into vendor (name,password) values (#{name},#{password})
+            insert into vendor (name,password,email,phone,address,state,date,portrait,description,image,time,fee,quantity) values (#{name},#{password},#{email},#{phone},#{address},#{state},#{date},#{portrait},#{description},#{image},#{time},#{fee},#{quantity})
     </insert>
 
     <select id="selectAll" resultType="com.quickcravebackend.model.Vendor">

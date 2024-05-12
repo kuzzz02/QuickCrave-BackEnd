@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface VendorMapper {
     @Options(useGeneratedKeys = true,keyProperty="id",keyColumn="id")
-    Integer insert (String name, String password);
+    Integer insert (String name, String password, String email, String phone, String address, String state, String date, String portrait, String description, String image, Long time, Long fee, String quantity);
 
     List<Vendor> selectAll();
 

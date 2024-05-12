@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface OrdersService {
-    Integer insert(Long id, Long goods_id, Long user_id, Long vendor_id, Long delivery_id, String state, String date, String price, String total);
+    Integer insert(Long id, Long goods_id, Long user_id, Long vendor_id, Long delivery_id, String state, String date, String address, String price, String total);
 
     Integer delete(Long id);
 
