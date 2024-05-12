@@ -13,8 +13,8 @@ public class VendorService_Imp implements VendorService{
     private VendorMapper vendorMapper;
 
     @Override
-    public Integer insert(String name, String password, String email, String phone, String address, String state, String date, String portrait, String description, String image, Long time, Long fee, String quantity){
-        return vendorMapper.insert(name, password, email, phone, address, state, date, portrait, description, image, time, fee, quantity);
+    public Integer insert(String name, String password, String email, String phone, String address, String state, String date, String portrait, String description, String image, String category, Long time, Long fee, String quantity){
+        return vendorMapper.insert(name, password, email, phone, address, state, date, portrait, description, image, category, time, fee, quantity);
     }
 
     @Override
@@ -24,6 +24,16 @@ public class VendorService_Imp implements VendorService{
     @Override
     public Vendor selectByName(String name) {
         return vendorMapper.selectByName(name);
+    }
+
+    @Override
+    public List<Vendor> selectByCategory(String category){
+        return vendorMapper.selectByCategory(category);
+    }
+
+    @Override
+    public List<Vendor> selectVendorWithGoods(Long id){
+        return vendorMapper.selectVendorWithGoods(id);
     }
 
     @Override
@@ -44,10 +54,5 @@ public class VendorService_Imp implements VendorService{
     @Override
     public Integer deleteAll(){
         return vendorMapper.deleteAll();
-    }
-
-    @Override
-    public List<Vendor> selectVendorWithGoods(Long id){
-        return vendorMapper.selectVendorWithGoods(id);
     }
 }

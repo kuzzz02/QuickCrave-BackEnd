@@ -21,7 +21,6 @@ public class Goods {
     private String date;
 
     private String price;
-    private String category;
     private String quantity;
     private String discount;
 

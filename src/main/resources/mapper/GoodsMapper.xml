@@ -7,7 +7,7 @@
 <mapper namespace="com.quickcravebackend.mapper.GoodsMapper">
 
     <insert id="insert" parameterType="com.quickcravebackend.model.Goods">
-        insert into goods (name,description,image,state,date,price,category,quantity,discount,vendor_id) values (#{name},#{description},#{image},#{state},#{date},#{price},#{category},#{quantity},#{discount},#{vendor_id})
+        insert into goods (name,description,image,state,date,price,quantity,discount,vendor_id) values (#{name},#{description},#{image},#{state},#{date},#{price},#{quantity},#{discount},#{vendor_id})
     </insert>
     
     <select id="selectAll" resultType="com.quickcravebackend.model.Goods">
@@ -22,10 +22,6 @@
         select * from goods where id = #{id}
     </select>
 
-    <select id="selectByCategory" resultType="com.quickcravebackend.model.Goods" parameterType="String">
-        select * from goods where category = #{category}
-    </select>
-
     <delete id="delete" parameterType="Long">
         delete from goods where id = #{id}
     </delete>
@@ -35,7 +31,7 @@
     </delete>
 
     <update id="update" parameterType="Long">
-        update goods set name = #{name},description = #{description},image = #{image},state = #{state},date = #{date},price = #{price},category = #{category},quantity = #{quantity},discount = #{discount} where id = #{id}
+        update goods set name = #{name},description = #{description},image = #{image},state = #{state},date = #{date},price = #{price},quantity = #{quantity},discount = #{discount} where id = #{id}
     </update>
 
     <update id="updateName" parameterType="com.quickcravebackend.model.Goods">
@@ -60,10 +56,6 @@
 
     <update id="updatePrice" parameterType="com.quickcravebackend.model.Goods">
         update goods set price = #{price} where id = #{id}
-    </update>
-
-    <update id="updateCategory" parameterType="com.quickcravebackend.model.Goods">
-        update goods set category = #{category} where id = #{id}
     </update>
 
     <update id="updateQuantity" parameterType="com.quickcravebackend.model.Goods">

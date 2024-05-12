@@ -1,9 +1,13 @@
 package com.quickcravebackend.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -12,47 +16,71 @@ import java.io.OutputStream;
 @CrossOrigin
 @RequestMapping("/image")
 public class ImageController {
-    private void sentImage(HttpServletResponse response, InputStream in) throws IOException {
-        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
-        OutputStream out = response.getOutputStream();
-
-        byte[] buffer = new byte[1024];
-        int bytesRead;
-        while ((bytesRead = in.read(buffer)) != -1) {
-            out.write(buffer, 0, bytesRead);
-        }
-        in.close();
+    @GetMapping(value = "/vendor")
+    public ResponseEntity<Resource> getVendorImage(String imageName) throws IOException {
+        String Url = System.getProperty("user.dir") + "/src/main/resources/static/vendor/" + imageName;
+        File file = new File(Url);
+        Resource resource = new UrlResource(file.toURI());
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(resource);
     }
 
-    @GetMapping(value = "/vendor/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public void getVendorImage(@PathVariable String imageName, HttpServletResponse response) throws IOException {
-        InputStream image = getClass().getResourceAsStream("/static/vendor/" + imageName);
-        if (image != null) {
-            sentImage(response, image);
-        }
+    @GetMapping(value = "/goods")
+    public ResponseEntity<Resource> getGoodsImage(String imageName) throws IOException {
+        String Url = System.getProperty("user.dir") + "/src/main/resources/static/goods/" + imageName;
+        File file = new File(Url);
+        Resource resource = new UrlResource(file.toURI());
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(resource);
     }
 
-    @GetMapping(value = "/goods/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public void getGoodsImage(@PathVariable String imageName, HttpServletResponse response) throws IOException {
-        InputStream image = getClass().getResourceAsStream("/static/goods/" + imageName);
-        if (image != null) {
-            sentImage(response, image);
-        }
+    @GetMapping(value = "/user")
+    public ResponseEntity<Resource> getUserImage(String imageName) throws IOException {
+        String Url = System.getProperty("user.dir") + "/src/main/resources/static/user/" + imageName;
+        File file = new File(Url);
+        Resource resource = new UrlResource(file.toURI());
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(resource);
     }
 
-    @GetMapping(value = "/user/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public void getUserImage(@PathVariable String imageName, HttpServletResponse response) throws IOException {
-        InputStream image = getClass().getResourceAsStream("/static/user/" + imageName);
-        if (image != null) {
-            sentImage(response, image);
-        }
+    @GetMapping(value = "/delivery")
+    public ResponseEntity<Resource> getDeliveryImage(String imageName) throws IOException {
+        String Url = System.getProperty("user.dir") + "/src/main/resources/static/delivery/" + imageName;
+        File file = new File(Url);
+        Resource resource = new UrlResource(file.toURI());
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(resource);
     }
 
-    @GetMapping(value = "/delivery/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public void getDeliveryImage(@PathVariable String imageName, HttpServletResponse response) throws IOException {
-        InputStream image = getClass().getResourceAsStream("/static/delivery/" + imageName);
-        if (image != null) {
-            sentImage(response, image);
-        }
-    }
+
+//        public void sentImage(HttpServletResponse response, InputStream in) throws IOException {
+//        try {
+//            response.setContentType(MediaType.IMAGE_PNG_VALUE);
+//            OutputStream out = response.getOutputStream();
+//
+//            byte[] buffer = new byte[1024];
+//            int bytesRead = 0;
+//            while ((bytesRead = in.read(buffer)) != -1) {
+//                out.write(buffer, 0, bytesRead);
+//                out.flush();
+//            }
+//            in.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
+
+//    @GetMapping(value = "/vendor", produces = MediaType.IMAGE_PNG_VALUE)
+//    public void getVendorImage(String imageName, HttpServletResponse response) throws IOException {
+//        InputStream image = getClass().getResourceAsStream("/static/vendor/" + imageName);
+//        if (image != null) {
+//            sentImage(response, image);
+//        }
+//    }
+
 }

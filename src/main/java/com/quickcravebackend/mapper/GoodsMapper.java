@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface GoodsMapper {
     @Options(useGeneratedKeys = true,keyProperty="id",keyColumn="id")
-    Integer insert(String name, String description, String image, String state, String date, String price, String category, String quantity, String discount, Long vendor_id);
+    Integer insert(String name, String description, String image, String state, String date, String price, String quantity, String discount, Long vendor_id);
 
     Integer delete(Long id);
 
@@ -22,8 +22,6 @@ public interface GoodsMapper {
     Goods selectById(Long id);
 
     Goods selectByName(String name);
-
-    List<Goods> selectByCategory(String category);
 
     Integer update(Long id);
 
@@ -38,8 +36,6 @@ public interface GoodsMapper {
     Integer updateDate(Long id, String date);
 
     Integer updatePrice(Long id, String price);
-
-    Integer updateCategory(Long id, String category);
 
     Integer updateDiscount(Long id, String discount);
 

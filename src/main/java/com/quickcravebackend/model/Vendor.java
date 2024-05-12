@@ -4,9 +4,20 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class Vendor extends Base{
+    private String category;
+
+    /**  time单位 min  **/
     private Long time;
     private Long fee;
     private String quantity;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public Long getTime() {
         return time;

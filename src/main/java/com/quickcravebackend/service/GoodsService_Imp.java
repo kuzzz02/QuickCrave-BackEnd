@@ -13,8 +13,8 @@ public class GoodsService_Imp implements GoodsService{
     private GoodsMapper goodsMapper;
 
     @Override
-    public Integer insert(String name, String description, String image, String state, String date, String price, String category, String quantity, String discount, Long vendor_id) {
-        return goodsMapper.insert(name, description, image, state, date, price, category, quantity, discount, vendor_id);
+    public Integer insert(String name, String description, String image, String state, String date, String price, String quantity, String discount, Long vendor_id) {
+        return goodsMapper.insert(name, description, image, state, date, price, quantity, discount, vendor_id);
     }
 
     @Override
@@ -40,11 +40,6 @@ public class GoodsService_Imp implements GoodsService{
     @Override
     public Goods selectByName(String name) {
         return goodsMapper.selectByName(name);
-    }
-
-    @Override
-    public List<Goods> selectByCategory(String category) {
-        return goodsMapper.selectByCategory(category);
     }
 
     @Override
@@ -80,11 +75,6 @@ public class GoodsService_Imp implements GoodsService{
     @Override
     public Integer updatePrice(Long id, String price) {
         return goodsMapper.updatePrice(id, price);
-    }
-
-    @Override
-    public Integer updateCategory(Long id, String category) {
-        return goodsMapper.updateCategory(id, category);
     }
 
     @Override

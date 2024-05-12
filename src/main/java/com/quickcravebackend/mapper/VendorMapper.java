@@ -11,11 +11,15 @@ import java.util.List;
 @Repository
 public interface VendorMapper {
     @Options(useGeneratedKeys = true,keyProperty="id",keyColumn="id")
-    Integer insert (String name, String password, String email, String phone, String address, String state, String date, String portrait, String description, String image, Long time, Long fee, String quantity);
+    Integer insert (String name, String password, String email, String phone, String address, String state, String date, String portrait, String description, String image, String category, Long time, Long fee, String quantity);
 
     List<Vendor> selectAll();
 
     Vendor selectByName(String name);
+
+    List<Vendor> selectByCategory(String category);
+
+    List<Vendor> selectVendorWithGoods(Long id);
 
     Integer delete(Long id);
 
@@ -25,5 +29,4 @@ public interface VendorMapper {
 
     Integer deleteAll();
 
-    List<Vendor> selectVendorWithGoods(Long id);
 }

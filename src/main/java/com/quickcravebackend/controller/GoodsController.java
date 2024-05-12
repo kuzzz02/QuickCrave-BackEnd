@@ -15,8 +15,8 @@ public class GoodsController {
     private GoodsService_Imp goodsService_Imp;
 
     @PostMapping("/insert")
-    public Integer insert(String name, String description, String image, String state, String date, String price, String category, String quantity, String discount, Long vendor_id){
-        return goodsService_Imp.insert(name, description, image, state, date, price, category, quantity, discount, vendor_id);
+    public Integer insert(String name, String description, String image, String state, String date, String price, String quantity, String discount, Long vendor_id){
+        return goodsService_Imp.insert(name, description, image, state, date, price, quantity, discount, vendor_id);
     }
 
     @DeleteMapping("/delete")
@@ -42,11 +42,6 @@ public class GoodsController {
     @GetMapping("/selectByName")
     public Goods selectByName(String name){
         return goodsService_Imp.selectByName(name);
-    }
-
-    @GetMapping("/selectByCategory")
-    public List<Goods> selectByCategory(String category){
-        return goodsService_Imp.selectByCategory(category);
     }
 
     @PutMapping("/update")
@@ -82,11 +77,6 @@ public class GoodsController {
     @PutMapping("/updatePrice")
     public Integer updatePrice(Long id, String price){
         return goodsService_Imp.updatePrice(id, price);
-    }
-
-    @PutMapping("/updateCategory")
-    public Integer updateCategory(Long id, String category){
-        return goodsService_Imp.updateCategory(id, category);
     }
 
     @PutMapping("/updateDiscount")

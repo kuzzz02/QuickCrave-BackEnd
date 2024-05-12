@@ -7,7 +7,7 @@
 <mapper namespace="com.quickcravebackend.mapper.VendorMapper">
 
     <insert id="insert" parameterType="com.quickcravebackend.model.Vendor">
-            insert into vendor (name,password,email,phone,address,state,date,portrait,description,image,time,fee,quantity) values (#{name},#{password},#{email},#{phone},#{address},#{state},#{date},#{portrait},#{description},#{image},#{time},#{fee},#{quantity})
+            insert into vendor (name,password,email,phone,address,state,date,portrait,description,image,category,time,fee,quantity) values (#{name},#{password},#{email},#{phone},#{address},#{state},#{date},#{portrait},#{description},#{image},#{category},#{time},#{fee},#{quantity})
     </insert>
 
     <select id="selectAll" resultType="com.quickcravebackend.model.Vendor">
@@ -16,6 +16,15 @@
 
     <select id="selectByName" resultType="com.quickcravebackend.model.Vendor" parameterType="String">
         select * from vendor where name = #{name}
+    </select>
+
+    <select id="selectByCategory" resultType="com.quickcravebackend.model.Vendor" parameterType="String">
+        select * from vendor where category = #{category}
+    </select>
+
+    <select id="selectVendorWithGoods" resultType="com.quickcravebackend.model.Goods" parameterType="Long">
+        select v.*, g.* from vendor v, goods g
+        where (v.id = #{id} and g.vendor_id = v.id)
     </select>
 
     <delete id="delete" parameterType="Long">
@@ -33,10 +42,5 @@
     <delete id="deleteAll">
         delete  from vendor
     </delete>
-
-    <select id="selectVendorWithGoods" resultType="com.quickcravebackend.model.Goods" parameterType="Long">
-        select v.*, g.* from vendor v, goods g
-        where (v.id = #{id} and g.vendor_id = v.id)
-    </select>
 
 </mapper>
