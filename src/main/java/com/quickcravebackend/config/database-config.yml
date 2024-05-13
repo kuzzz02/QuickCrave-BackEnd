@@ -8,13 +8,3 @@ grant privileges: grant all on qcdb.* to 'qc'@'%';
   /resources/sql
 #  图片路径
   /resources/static/
-
-#  id自增
-  alter table qcdb.user
-  modify id bigint auto_increment;
-  
-  alter table qcdb.user
-  auto_increment = 1;
-#  设置非null
-  alter table qcdb.user
-  modify username varchar(255) not null;
