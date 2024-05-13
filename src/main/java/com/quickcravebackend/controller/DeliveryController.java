@@ -16,7 +16,7 @@ public class DeliveryController {
     @Autowired
     private DeliveryService_Imp deliveryService_Imp;
     
-    @PostMapping("insert")
+    @PostMapping("/insert")
     public Integer insert(String name, String password){
         return deliveryService_Imp.insert(name,password);
     }

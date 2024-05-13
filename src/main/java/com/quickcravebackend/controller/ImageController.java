@@ -16,9 +16,11 @@ import java.io.OutputStream;
 @CrossOrigin
 @RequestMapping("/image")
 public class ImageController {
+//    private final String baseUrl  = "/src/main/resources/static";
+    private final String baseUrl = "/usr/local/java/static";
     @GetMapping(value = "/vendor")
     public ResponseEntity<Resource> getVendorImage(String imageName) throws IOException {
-        String Url = System.getProperty("user.dir") + "/src/main/resources/static/vendor/" + imageName;
+        String Url = baseUrl + "/vendor/" + imageName;
         File file = new File(Url);
         Resource resource = new UrlResource(file.toURI());
         return ResponseEntity.ok()
@@ -28,7 +30,7 @@ public class ImageController {
 
     @GetMapping(value = "/goods")
     public ResponseEntity<Resource> getGoodsImage(String imageName) throws IOException {
-        String Url = System.getProperty("user.dir") + "/src/main/resources/static/goods/" + imageName;
+        String Url = baseUrl + "/goods/" + imageName;
         File file = new File(Url);
         Resource resource = new UrlResource(file.toURI());
         return ResponseEntity.ok()
@@ -38,7 +40,7 @@ public class ImageController {
 
     @GetMapping(value = "/user")
     public ResponseEntity<Resource> getUserImage(String imageName) throws IOException {
-        String Url = System.getProperty("user.dir") + "/src/main/resources/static/user/" + imageName;
+        String Url = baseUrl + "/user/" + imageName;
         File file = new File(Url);
         Resource resource = new UrlResource(file.toURI());
         return ResponseEntity.ok()
@@ -48,7 +50,7 @@ public class ImageController {
 
     @GetMapping(value = "/delivery")
     public ResponseEntity<Resource> getDeliveryImage(String imageName) throws IOException {
-        String Url = System.getProperty("user.dir") + "/src/main/resources/static/delivery/" + imageName;
+        String Url = baseUrl + "/delivery/" + imageName;
         File file = new File(Url);
         Resource resource = new UrlResource(file.toURI());
         return ResponseEntity.ok()

@@ -14,7 +14,7 @@
     <name>QuickCrave-BackEnd</name>
     <description>QuickCrave-BackEnd</description>
     <properties>
-        <java.version>22</java.version>
+        <java.version>19</java.version>
     </properties>
     <dependencies>
         <dependency>

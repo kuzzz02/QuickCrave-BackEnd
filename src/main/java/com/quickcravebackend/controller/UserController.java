@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     private UserService_Imp userService_Imp;
 
-    @PostMapping ("insert")
+    @PostMapping ("/insert")
     public Integer insert(String name, String password){
         return userService_Imp.insert(name,password);
     }

@@ -15,7 +15,6 @@ grant privileges: grant all on qcdb.* to 'qc'@'%';
   
   alter table qcdb.user
   auto_increment = 1;
-  
 #  设置非null
   alter table qcdb.user
   modify username varchar(255) not null;
