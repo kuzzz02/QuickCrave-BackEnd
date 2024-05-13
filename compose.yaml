@@ -1,0 +1,10 @@
+services:
+  mysql:
+    image: 'mysql:qcdb-client'
+    environment:
+      - 'MYSQL_DATABASE=qc'
+      - 'MYSQL_PASSWORD=qc123456'
+      - 'MYSQL_ROOT_PASSWORD=root'
+      - 'MYSQL_USER=17097233461poi'
+    ports:
+      - '3306'

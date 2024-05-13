@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.quickcravebackend.mapper.UserMapper">
+    <insert id="insert" parameterType="com.quickcravebackend.model.User">
+        insert into user (name,password) values (#{name},#{password})
+    </insert>
+
+    <select id="selectAll" resultType="com.quickcravebackend.model.User">
+        select * from user
+    </select>
+
+    <select id="selectByName" resultType="com.quickcravebackend.model.User" parameterType="String">
+        select * from user where name = #{name}
+    </select>
+
+    <delete id="delete" parameterType="Long">
+        delete from user where id = #{id}
+    </delete>
+
+    <update id="update" parameterType="Long">
+        update user set name = #{name},password = #{password} where id =#{id}
+    </update>
+
+    <select id="selectById" resultType="com.quickcravebackend.model.User" parameterType="Long">
+        select * from user where id = #{id}
+    </select>
+
+    <delete id="deleteAll">
+        delete  from user
+    </delete>
+
+</mapper>

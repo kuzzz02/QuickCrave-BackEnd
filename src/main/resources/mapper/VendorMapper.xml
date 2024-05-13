@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.quickcravebackend.mapper.VendorMapper">
+
+    <insert id="insert" parameterType="com.quickcravebackend.model.Vendor">
+            insert into vendor (name,password,email,phone,address,state,date,portrait,description,image,category,time,fee,quantity) values (#{name},#{password},#{email},#{phone},#{address},#{state},#{date},#{portrait},#{description},#{image},#{category},#{time},#{fee},#{quantity})
+    </insert>
+
+    <select id="selectAll" resultType="com.quickcravebackend.model.Vendor">
+        select * from vendor
+    </select>
+
+    <select id="selectByName" resultType="com.quickcravebackend.model.Vendor" parameterType="String">
+        select * from vendor where name = #{name}
+    </select>
+
+    <select id="selectByCategory" resultType="com.quickcravebackend.model.Vendor" parameterType="String">
+        select * from vendor where category = #{category}
+    </select>
+
+    <select id="selectVendorWithGoods" resultType="com.quickcravebackend.model.Goods" parameterType="Long">
+        select v.*, g.* from vendor v, goods g
+        where (v.id = #{id} and g.vendor_id = v.id)
+    </select>
+
+    <delete id="delete" parameterType="Long">
+        delete from vendor where id = #{id}
+    </delete>
+
+    <update id="update" parameterType="Long">
+        update vendor set name = #{name},password = #{password} where id =#{id}
+    </update>
+
+    <select id="selectById" resultType="com.quickcravebackend.model.Vendor" parameterType="Long">
+        select * from vendor where id = #{id}
+    </select>
+
+    <delete id="deleteAll">
+        delete  from vendor
+    </delete>
+
+</mapper>
