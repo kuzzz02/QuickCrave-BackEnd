@@ -22,6 +22,7 @@ public class Orders {
     private String state;
     private String date;
     private String address;
+    private String phone;
     private String payment;
     private String total;
 }

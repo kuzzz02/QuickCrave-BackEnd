@@ -1,7 +1,5 @@
 package com.quickcravebackend.controller;
 
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,16 +11,14 @@ import java.io.*;
 @CrossOrigin
 @RequestMapping("/image")
 public class ImageController {
-    private final String baseUrl = "src/main/resources/static";
-//    private final String baseUrl = "/usr/local/java/static";
+//    private final String baseUrl = "src/main/resources/static";
+    private final String baseUrl = "/usr/local/java/static";
 
     private ResponseEntity<StreamingResponseBody> getResponseEntity(String Url) throws IOException {
-//        Resource resource = new UrlResource(file.toURI());
         File file = new File(Url);
         InputStream in = new FileInputStream(file);
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_PNG)
-//                .body(resource);
                 .body(out -> {
                     byte[] buffer = new byte[1024];
                     int bytesRead;

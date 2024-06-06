@@ -9,4 +9,6 @@ public class QuickCraveBackEndApplication {
         SpringApplication.run(QuickCraveBackEndApplication.class, args);
     }
 
+//    nohup java -jar QuickCrave-BackEnd-1.0.0.jar >temp.txt 2>&1&
+
 }

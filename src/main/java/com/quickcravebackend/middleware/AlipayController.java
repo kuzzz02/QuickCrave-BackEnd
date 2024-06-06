@@ -1,4 +1,4 @@
-package com.quickcravebackend.controller;
+package com.quickcravebackend.middleware;
 
 import org.springframework.web.bind.annotation.*;
 

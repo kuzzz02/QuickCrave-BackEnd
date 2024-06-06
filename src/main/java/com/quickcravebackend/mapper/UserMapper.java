@@ -18,7 +18,7 @@ public interface UserMapper {
 
     Integer delete(Long id);
 
-    Integer update(Long id);
+    Integer update(Long id, String name, String password);
 
     User selectById(Long id);
 

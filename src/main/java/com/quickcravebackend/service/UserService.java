@@ -14,7 +14,7 @@ public interface UserService {
 
     Integer delete(Long id);
 
-    Integer update(Long id);
+    Integer update(Long id, String name, String password);
 
     User selectById(Long id);
 

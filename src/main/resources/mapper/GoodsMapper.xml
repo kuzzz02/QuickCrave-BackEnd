@@ -7,7 +7,7 @@
 <mapper namespace="com.quickcravebackend.mapper.GoodsMapper">
 
     <insert id="insert" parameterType="com.quickcravebackend.model.Goods">
-        insert into goods (name,description,image,state,date,price,quantity,discount,vendor_id) values (#{name},#{description},#{image},#{state},#{date},#{price},#{quantity},#{discount},#{vendor_id})
+        insert into goods (name,description,image,number,price,discount,vendor_id) values (#{name},#{description},#{image},#{number},#{price},#{discount},#{vendor_id})
     </insert>
     
     <select id="selectAll" resultType="com.quickcravebackend.model.Goods">
@@ -30,10 +30,6 @@
         delete from goods
     </delete>
 
-    <update id="update" parameterType="Long">
-        update goods set name = #{name},description = #{description},image = #{image},state = #{state},date = #{date},price = #{price},quantity = #{quantity},discount = #{discount} where id = #{id}
-    </update>
-
     <update id="updateName" parameterType="com.quickcravebackend.model.Goods">
         update goods set name = #{name} where id = #{id}
     </update>
@@ -46,20 +42,12 @@
         update goods set image = #{image} where id = #{id}
     </update>
 
-    <update id="updateState" parameterType="com.quickcravebackend.model.Goods">
-        update goods set state = #{state} where id = #{id}
-    </update>
-
-    <update id="updateDate" parameterType="com.quickcravebackend.model.Goods">
-        update goods set date = #{date} where id = #{id}
+    <update id="updateNumber" parameterType="com.quickcravebackend.model.Goods">
+        update goods set number = #{number} where id = #{id}
     </update>
 
     <update id="updatePrice" parameterType="com.quickcravebackend.model.Goods">
         update goods set price = #{price} where id = #{id}
-    </update>
-
-    <update id="updateQuantity" parameterType="com.quickcravebackend.model.Goods">
-        update goods set quantity = #{quantity} where id = #{id}
     </update>
 
     <update id="updateDiscount" parameterType="com.quickcravebackend.model.Goods">

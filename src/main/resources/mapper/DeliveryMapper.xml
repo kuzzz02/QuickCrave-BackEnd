@@ -21,8 +21,8 @@
         delete from delivery where id = #{id}
     </delete>
 
-    <update id="update" parameterType="Long">
-        update delivery set name = #{name},password = #{password} where id =#{id}
+    <update id="update" parameterType="com.quickcravebackend.model.Delivery">
+        update delivery set name = #{name}, password = #{password} where id = #{id}
     </update>
 
     <select id="selectById" resultType="com.quickcravebackend.model.Delivery" parameterType="Long">

@@ -32,8 +32,8 @@ public class UserService_Imp implements UserService{
     }
 
     @Override
-    public Integer update(Long id){
-        return userMapper.update(id);
+    public Integer update(Long id, String name, String password){
+        return userMapper.update(id, name, password);
     }
 
     @Override

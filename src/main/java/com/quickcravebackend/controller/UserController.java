@@ -1,5 +1,6 @@
 package com.quickcravebackend.controller;
 
+import com.quickcravebackend.Utility.Response;
 import com.quickcravebackend.model.User;
 import com.quickcravebackend.service.UserService_Imp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,27 +47,30 @@ public class UserController {
     }
 
     @PutMapping("/update")
-    public Integer update(Long id){
-        return userService_Imp.update(id);
+    public Integer update(Long id, String name, String password){
+        return userService_Imp.update(id, name, password);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> Login(@RequestBody User user) {
+    public ResponseEntity<Response> Login(@RequestBody User user) {
         User newUser = selectByName(user.getName());
         if(newUser != null && Objects.equals(newUser.getPassword(), user.getPassword())){
-            return ResponseEntity.ok(newUser);
+            return ResponseEntity.ok(new Response("success login"));
         }
-        return ResponseEntity.badRequest().build();
+        else {
+            return ResponseEntity.ok(new Response("fail to login"));
+        }
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<User> Register(@RequestBody User user) {
+    public ResponseEntity<Response> Register(@RequestBody User user) {
         if(user.getName() != null && user.getPassword() != null && selectByName(user.getName()) == null){
             insert(user.getName(),user.getPassword());
-            User newUser = selectByName(user.getName());
-            return ResponseEntity.ok(newUser);
+            return ResponseEntity.ok(new Response("success register"));
         }
-        return ResponseEntity.badRequest().build();
+        else {
+            return ResponseEntity.ok(new Response("fail to register"));
+        }
     }
 
 }

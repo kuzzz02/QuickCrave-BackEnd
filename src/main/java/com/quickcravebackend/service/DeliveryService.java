@@ -14,7 +14,7 @@ public interface DeliveryService {
 
     Integer delete(Long id);
 
-    Integer update(Long id);
+    Integer update(Long id, String name, String password);
 
     Delivery selectById(Long id);
 
