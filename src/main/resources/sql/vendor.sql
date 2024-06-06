@@ -12,6 +12,14 @@ alter table qcdb.vendor
 alter table qcdb.vendor
     modify password varchar(255) not null;
 
+alter table qcdb.vendor
+    modify phone varchar(255) not null;
+
+alter table qcdb.vendor
+    modify address varchar(255) not null;
+
+alter table qcdb.vendor
+    alter column state set default "open";
 
 INSERT INTO vendor (`id`,`address`,`date`,`description`,`email`,`image`,`name`,`password`,`phone`,`portrait`,`state`,fee,`quantity`,time,`category`) VALUES
 (1,'scnu','2024/5/1','Cheap but Tasty','12161@xx.mail','KFC_detail.png','KFC','123456','18112','KFC.png','open',2,'4.9',40,'burger'),

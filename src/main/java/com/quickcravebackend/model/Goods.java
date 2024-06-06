@@ -17,8 +17,8 @@ public class Goods {
     private String name;
     private String description;
     private String image;
+    
     private String number;
-
     private String price;
     private String discount;
 
