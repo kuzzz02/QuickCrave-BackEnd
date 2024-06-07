@@ -18,8 +18,8 @@ public class UserController {
     private UserService_Imp userService_Imp;
 
     @PostMapping ("/insert")
-    public Integer insert(String name, String password){
-        return userService_Imp.insert(name,password);
+    public Integer insert(String name, String password, String address, String phone){
+        return userService_Imp.insert(name,password,address,phone);
     }
 
     @GetMapping("/selectAll")
@@ -65,7 +65,7 @@ public class UserController {
     @PostMapping("/signup")
     public ResponseEntity<Response> Register(@RequestBody User user) {
         if(user.getName() != null && user.getPassword() != null && selectByName(user.getName()) == null){
-            insert(user.getName(),user.getPassword());
+            insert(user.getName(),user.getPassword(),user.getAddress(),user.getPhone());
             return ResponseEntity.ok(new Response("success register"));
         }
         else {

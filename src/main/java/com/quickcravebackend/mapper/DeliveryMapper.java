@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface DeliveryMapper {
     @Options(useGeneratedKeys = true,keyProperty="id",keyColumn="id")
-    Integer insert (String name, String password);
+    Integer insert (String name, String password, String address, String phone);
 
     List<Delivery> selectAll();
 

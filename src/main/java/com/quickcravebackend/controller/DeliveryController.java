@@ -18,8 +18,8 @@ public class DeliveryController {
     private DeliveryService_Imp deliveryService_Imp;
     
     @PostMapping("/insert")
-    public Integer insert(String name, String password){
-        return deliveryService_Imp.insert(name,password);
+    public Integer insert(String name, String password, String address, String phone){
+        return deliveryService_Imp.insert(name,password,address,phone);
     }
     
     @GetMapping("/selectAll")
@@ -66,7 +66,7 @@ public class DeliveryController {
     @PostMapping("/signup")
     public ResponseEntity<Response> Register(@RequestBody Delivery delivery) {
         if(delivery.getName() != null && delivery.getPassword() != null && selectByName(delivery.getName()) == null){
-            insert(delivery.getName(),delivery.getPassword());
+            insert(delivery.getName(),delivery.getPassword(),delivery.getAddress(),delivery.getPhone());
             return ResponseEntity.ok(new Response("success login"));
         }
         else {

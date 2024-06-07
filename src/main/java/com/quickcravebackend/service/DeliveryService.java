@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface DeliveryService {
-    Integer insert(String name, String password);
+    Integer insert(String name, String password, String address, String phone);
     List<Delivery> selectAll();
 
     Delivery selectByName(String name);

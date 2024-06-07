@@ -12,8 +12,8 @@ public class DeliveryService_Imp implements DeliveryService {
     @Autowired
     private DeliveryMapper deliveryMapper;
     @Override
-    public Integer insert(String name, String password) {
-        return deliveryMapper.insert(name, password);
+    public Integer insert(String name, String password, String address, String phone) {
+        return deliveryMapper.insert(name, password, address, phone);
     }
 
     @Override

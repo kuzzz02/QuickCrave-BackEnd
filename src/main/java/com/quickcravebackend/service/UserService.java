@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface UserService {
-    Integer insert(String name, String password);
+    Integer insert(String name, String password, String address, String phone);
     List<User> selectAll();
 
     User selectByName(String name);

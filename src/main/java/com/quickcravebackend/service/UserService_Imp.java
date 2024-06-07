@@ -13,8 +13,8 @@ public class UserService_Imp implements UserService{
     private UserMapper userMapper;
 
     @Override
-    public Integer insert(String name, String password){
-        return userMapper.insert(name,password);
+    public Integer insert(String name, String password, String address, String phone){
+        return userMapper.insert(name,password,address,phone);
     }
 
     @Override

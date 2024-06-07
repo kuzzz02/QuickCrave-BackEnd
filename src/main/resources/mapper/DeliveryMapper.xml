@@ -6,7 +6,7 @@
 
 <mapper namespace="com.quickcravebackend.mapper.DeliveryMapper">
     <insert id="insert" parameterType="com.quickcravebackend.model.Delivery">
-        insert into delivery (name,password) values (#{name},#{password})
+        insert into delivery (name,password,address,phone) values (#{name},#{password},#{address},#{phone})
     </insert>
 
     <select id="selectAll" resultType="com.quickcravebackend.model.Delivery">
