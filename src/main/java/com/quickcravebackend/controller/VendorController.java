@@ -126,7 +126,7 @@ public class VendorController {
         return vendorService_Imp.updateQuantity(id, quantity);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<Response> Login(Vendor vendor){
         Vendor newVendor = selectByName(vendor.getName());
         if(newVendor != null && Objects.equals(newVendor.getPassword(), vendor.getPassword())){
