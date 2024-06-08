@@ -15,7 +15,7 @@ public class OrdersController {
     private OrdersService_Imp ordersService_Imp;
 
     @PostMapping("/insert")
-    public Integer insert(Long id, Long goods_id, Long user_id, Long vendor_id, Long delivery_id, String state, String date, String address, String phone, String payment, String total){
+    public Integer insert(Long id, String goods_id, Long user_id, Long vendor_id, Long delivery_id, String state, String date, String address, String phone, String payment, String total){
         return ordersService_Imp.insert(id, goods_id, user_id, vendor_id, delivery_id, state, date, address, phone, payment, total);
     }
 

@@ -14,7 +14,7 @@ public class Orders {
     @Id
     private Long id;
 
-    private Long goods_id;
+    private String goods_id;
     private Long user_id;
     private Long vendor_id;
     private Long delivery_id;

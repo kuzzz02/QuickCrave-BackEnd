@@ -11,8 +11,8 @@ import java.io.*;
 @CrossOrigin
 @RequestMapping("/image")
 public class ImageController {
-//    private final String baseUrl = "src/main/resources/static";
-    private final String baseUrl = "/usr/local/java/static";
+//    private static final String baseUrl = "src/main/resources/static";
+    private static final String baseUrl = "/usr/local/java/static";
 
     private ResponseEntity<StreamingResponseBody> getResponseEntity(String Url) throws IOException {
         File file = new File(Url);
