@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface OrdersService {
-    Integer insert(Long id, String goods_id, Long user_id, Long vendor_id, Long delivery_id, String state, String date, String address, String phone, String payment, String total);
+    Integer insert(String orders_id, String goods_id, Long user_id, Long vendor_id, Long delivery_id, String state, String date, String address, String phone, String payment, String total);
 
     Integer delete(Long id);
 
@@ -15,7 +15,7 @@ public interface OrdersService {
 
     List<Orders> selectAll();
 
-    Orders selectById(Long id);
+    Orders selectByOrdersId(String orders_id);
 
     Integer updateState(Long id, String state);
 }

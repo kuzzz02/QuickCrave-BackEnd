@@ -13,8 +13,8 @@ public class OrdersService_Imp implements OrdersService{
     private OrdersMapper ordersMapper;
 
     @Override
-    public Integer insert(Long id, String goods_id, Long user_id, Long vendor_id, Long delivery_id, String state, String date, String address, String phone, String payment, String total) {
-        return ordersMapper.insert(id, goods_id, user_id, vendor_id, delivery_id, state, date, address, phone, payment, total);
+    public Integer insert(String orders_id, String goods_id, Long user_id, Long vendor_id, Long delivery_id, String state, String date, String address, String phone, String payment, String total) {
+        return ordersMapper.insert(orders_id, goods_id, user_id, vendor_id, delivery_id, state, date, address, phone, payment, total);
     }
 
     @Override
@@ -33,8 +33,8 @@ public class OrdersService_Imp implements OrdersService{
     }
 
     @Override
-    public Orders selectById(Long id) {
-        return ordersMapper.selectById(id);
+    public Orders selectByOrdersId(String orders_id) {
+        return ordersMapper.selectByOrdersId(orders_id);
     }
 
     @Override

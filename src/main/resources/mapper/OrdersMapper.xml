@@ -6,15 +6,15 @@
 
 <mapper namespace="com.quickcravebackend.mapper.OrdersMapper">
     <insert id="insert" parameterType="com.quickcravebackend.model.Orders">
-        insert into orders (goods_id,user_id,vendor_id,delivery_id,state,date,address,phone,payment,total) values (#{goods_id},#{user_id},#{vendor_id},#{delivery_id},#{state},#{date},#{address},#{phone},#{payment},#{total})
+        insert into orders (orders_id, goods_id,user_id,vendor_id,delivery_id,state,date,address,phone,payment,total) values (#{orders_id},#{goods_id},#{user_id},#{vendor_id},#{delivery_id},#{state},#{date},#{address},#{phone},#{payment},#{total})
     </insert>
 
     <select id="selectAll" resultType="com.quickcravebackend.model.Orders">
         select * from orders
     </select>
 
-    <select id="selectById" resultType="com.quickcravebackend.model.Orders" parameterType="Long">
-        select * from orders where id = #{id}
+    <select id="selectByOrdersId" resultType="com.quickcravebackend.model.Orders">
+        select * from orders where orders_id = #{orders_id}
     </select>
 
     <delete id="delete" parameterType="Long">

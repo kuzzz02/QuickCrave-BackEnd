@@ -14,6 +14,10 @@ public class Orders {
     @Id
     private Long id;
 
+    /**
+     * orders_id: 订单号 至少16位
+     */
+    private String orders_id;
     private String goods_id;
     private Long user_id;
     private Long vendor_id;
