@@ -1,6 +1,6 @@
 package com.quickcravebackend.controller;
 
-import com.quickcravebackend.Utility.Response;
+import com.quickcravebackend.utility.Response;
 import com.quickcravebackend.model.Vendor;
 import com.quickcravebackend.service.VendorService_Imp;
 import org.springframework.beans.factory.annotation.Autowired;

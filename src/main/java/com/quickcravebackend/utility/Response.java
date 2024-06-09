@@ -1,4 +1,4 @@
-package com.quickcravebackend.Utility;
+package com.quickcravebackend.utility;
 
 public class Response {
     private String message;
