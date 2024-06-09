@@ -28,7 +28,7 @@ public class AlipayController {
     private final String notifyUrl = "https://8.130.37.157:12581/alipay/notify";
 
     OrdersController ordersController = new OrdersController();
-    private Long orders_id;
+    private String orders_id;
 
     @PostMapping("/pay")
     public String pay(@RequestBody Orders orders) {
@@ -47,7 +47,7 @@ public class AlipayController {
         extUserInfo.setNeedCheckInfo("F");
         model.setExtUserInfo(extUserInfo);
 
-        this.orders_id = orders.getId();
+        this.orders_id = orders.getOrders_id();
         model.setOutTradeNo(String.valueOf(orders_id));
         model.setTotalAmount(orders.getTotal());
         model.setSubject("ORDER");

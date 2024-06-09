@@ -38,7 +38,7 @@ public class OrdersService_Imp implements OrdersService{
     }
 
     @Override
-    public Integer updateState(Long id, String state) {
-        return ordersMapper.updateState(id, state);
+    public Integer updateState(String orders_id, String state) {
+        return ordersMapper.updateState(orders_id, state);
     }
 }

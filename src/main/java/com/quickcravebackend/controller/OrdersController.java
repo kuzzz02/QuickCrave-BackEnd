@@ -23,12 +23,9 @@ public class OrdersController {
 
     @PostMapping("/create")
     public ResponseEntity<Orders> create(@RequestBody Orders orders) {
+        insert(orders.getOrders_id(), orders.getGoods_id(), orders.getUser_id(), orders.getVendor_id(), orders.getDelivery_id(), orders.getState(), orders.getDate(), orders.getAddress(), orders.getPhone(), orders.getPayment(), orders.getTotal());
         Orders newOrders = selectByOrdersId(orders.getOrders_id());
-        if (newOrders != null) {
-            insert(orders.getOrders_id(), orders.getGoods_id(), orders.getUser_id(), orders.getVendor_id(), orders.getDelivery_id(), orders.getState(), orders.getDate(), orders.getAddress(), orders.getPhone(), orders.getPayment(), orders.getTotal());
-            return ResponseEntity.ok(newOrders);
-        }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok(newOrders);
     }
 
     @DeleteMapping("/delete")
@@ -52,7 +49,7 @@ public class OrdersController {
     }
 
     @PutMapping("/updateState")
-    public Integer updateState(Long id, String state){
-        return ordersService_Imp.updateState(id, state);
+    public Integer updateState(String orders_id, String state){
+        return ordersService_Imp.updateState(orders_id, state);
     }
 }

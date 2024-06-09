@@ -21,5 +21,5 @@ public interface OrdersMapper {
 
     Orders selectByOrdersId(String orders_id);
 
-    Integer updateState(Long id, String state);
+    Integer updateState(String orders_id, String state);
 }

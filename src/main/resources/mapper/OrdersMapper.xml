@@ -26,7 +26,7 @@
     </delete>
 
     <update id="updateState" parameterType="com.quickcravebackend.model.Orders">
-        update orders set state = #{state} where id = #{id}
+        update orders set state = #{state} where orders_id = #{orders_id}
     </update>
 
 </mapper>
