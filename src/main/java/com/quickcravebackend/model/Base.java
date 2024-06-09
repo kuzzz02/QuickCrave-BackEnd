@@ -27,7 +27,7 @@ public class Base {
     protected String date;
 
 /**
-    image,portrait 都是图片/头像的名字
+    image/portrait 指图片/头像
  **/
     protected String portrait;
     protected String description;

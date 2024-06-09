@@ -13,8 +13,8 @@ public class GoodsService_Imp implements GoodsService{
     private GoodsMapper goodsMapper;
 
     @Override
-    public Integer insert(String name, String description, String image, String state, String date, String price, String quantity, String discount, Long vendor_id) {
-        return goodsMapper.insert(name, description, image, state, date, price, quantity, discount, vendor_id);
+    public Integer insert(String name, String description, String image, String number, String price, String discount, Long vendor_id) {
+        return goodsMapper.insert(name, description, image, number, price, discount, vendor_id);
     }
 
     @Override
@@ -43,11 +43,6 @@ public class GoodsService_Imp implements GoodsService{
     }
 
     @Override
-    public Integer update(Long id) {
-        return goodsMapper.update(id);
-    }
-
-    @Override
     public Integer updateName(Long id, String name) {
         return goodsMapper.updateName(id, name);
     }
@@ -63,13 +58,8 @@ public class GoodsService_Imp implements GoodsService{
     }
 
     @Override
-    public Integer updateState(Long id, String state) {
-        return goodsMapper.updateState(id, state);
-    }
-
-    @Override
-    public Integer updateDate(Long id, String date) {
-        return goodsMapper.updateDate(id, date);
+    public Integer updateNumber(Long id, String number) {
+        return goodsMapper.updateNumber(id, number);
     }
 
     @Override
@@ -80,11 +70,6 @@ public class GoodsService_Imp implements GoodsService{
     @Override
     public Integer updateDiscount(Long id, String discount) {
         return goodsMapper.updateDiscount(id, discount);
-    }
-
-    @Override
-    public Integer updateQuantity(Long id, String quantity) {
-        return goodsMapper.updateQuantity(id, quantity);
     }
 
     @Override

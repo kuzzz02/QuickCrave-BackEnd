@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface OrdersMapper {
     @Options(useGeneratedKeys = true,keyProperty="id",keyColumn="id")
-    Integer insert(Long id, Long goods_id, Long user_id, Long vendor_id, Long delivery_id, String state, String address, String date, String price, String total);
+    Integer insert(String orders_id, String goods_id, Long user_id, Long vendor_id, Long delivery_id, String state, String date, String address, String phone, String payment, String total);
 
     Integer delete(Long id);
 
@@ -19,5 +19,7 @@ public interface OrdersMapper {
 
     List<Orders> selectAll();
 
-    Orders selectById(Long id);
+    Orders selectByOrdersId(String orders_id);
+
+    Integer updateState(String orders_id, String state);
 }

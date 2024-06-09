@@ -1,5 +1,6 @@
 package com.quickcravebackend.controller;
 
+import com.quickcravebackend.Utility.Response;
 import com.quickcravebackend.model.Delivery;
 import com.quickcravebackend.service.DeliveryService_Imp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,9 @@ public class DeliveryController {
     @Autowired
     private DeliveryService_Imp deliveryService_Imp;
     
-    @PostMapping("insert")
-    public Integer insert(String name, String password){
-        return deliveryService_Imp.insert(name,password);
+    @PostMapping("/insert")
+    public Integer insert(String name, String password, String address, String phone){
+        return deliveryService_Imp.insert(name,password,address,phone);
     }
     
     @GetMapping("/selectAll")
@@ -47,27 +48,30 @@ public class DeliveryController {
     }
 
     @PutMapping("/update")
-    public Integer update(Long id){
-        return deliveryService_Imp.update(id);
+    public Integer update(Long id, String name, String password){
+        return deliveryService_Imp.update(id, name, password);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Delivery> Login(@RequestBody Delivery delivery) {
+    public ResponseEntity<Response> Login(@RequestBody Delivery delivery) {
         Delivery newDelivery = selectByName(delivery.getName());
         if(newDelivery != null && Objects.equals(newDelivery.getPassword(), delivery.getPassword())){
-            return ResponseEntity.ok(newDelivery);
+            return ResponseEntity.ok(new Response("success login"));
         }
-        return ResponseEntity.badRequest().build();
+        else {
+            return ResponseEntity.ok(new Response("fail to login"));
+        }
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<Delivery> Register(@RequestBody Delivery delivery) {
+    public ResponseEntity<Response> Register(@RequestBody Delivery delivery) {
         if(delivery.getName() != null && delivery.getPassword() != null && selectByName(delivery.getName()) == null){
-            insert(delivery.getName(),delivery.getPassword());
-            Delivery newDelivery = selectByName(delivery.getName());
-            return ResponseEntity.ok(newDelivery);
+            insert(delivery.getName(),delivery.getPassword(),delivery.getAddress(),delivery.getPhone());
+            return ResponseEntity.ok(new Response("success login"));
         }
-        return ResponseEntity.badRequest().build();
+        else {
+            return ResponseEntity.ok(new Response("fail to login"));
+        }
     }
 
 }

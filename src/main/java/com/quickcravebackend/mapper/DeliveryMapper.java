@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface DeliveryMapper {
     @Options(useGeneratedKeys = true,keyProperty="id",keyColumn="id")
-    Integer insert (String name, String password);
+    Integer insert (String name, String password, String address, String phone);
 
     List<Delivery> selectAll();
 
@@ -19,7 +19,7 @@ public interface DeliveryMapper {
 
     Integer delete(Long id);
 
-    Integer update(Long id);
+    Integer update(Long id, String name, String password);
 
     Delivery selectById(Long id);
 

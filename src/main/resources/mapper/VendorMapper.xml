@@ -7,7 +7,7 @@
 <mapper namespace="com.quickcravebackend.mapper.VendorMapper">
 
     <insert id="insert" parameterType="com.quickcravebackend.model.Vendor">
-            insert into vendor (name,password,email,phone,address,state,date,portrait,description,image,category,time,fee,quantity) values (#{name},#{password},#{email},#{phone},#{address},#{state},#{date},#{portrait},#{description},#{image},#{category},#{time},#{fee},#{quantity})
+            insert into vendor (name,password,phone,address,portrait,description,image,category) values (#{name},#{password},#{phone},#{address},#{portrait},#{description},#{image},#{category})
     </insert>
 
     <select id="selectAll" resultType="com.quickcravebackend.model.Vendor">
@@ -31,10 +31,6 @@
         delete from vendor where id = #{id}
     </delete>
 
-    <update id="update" parameterType="Long">
-        update vendor set name = #{name},password = #{password} where id =#{id}
-    </update>
-
     <select id="selectById" resultType="com.quickcravebackend.model.Vendor" parameterType="Long">
         select * from vendor where id = #{id}
     </select>
@@ -42,5 +38,61 @@
     <delete id="deleteAll">
         delete  from vendor
     </delete>
+
+    <update id="updateName" parameterType="com.quickcravebackend.model.Vendor">
+        update vendor set name = #{name} where id = #{id}
+    </update>
+
+    <update id="updatePassword" parameterType="com.quickcravebackend.model.Vendor">
+        update vendor set password = #{password} where id = #{id}
+    </update>
+
+    <update id="updateEmail" parameterType="com.quickcravebackend.model.Vendor">
+        update vendor set email = #{email} where id = #{id}
+    </update>
+
+    <update id="updatePhone" parameterType="com.quickcravebackend.model.Vendor">
+        update vendor set phone = #{phone} where id = #{id}
+    </update>
+
+    <update id="updateAddress" parameterType="com.quickcravebackend.model.Vendor">
+        update vendor set address = #{address} where id = #{id}
+    </update>
+
+    <update id="updateState" parameterType="com.quickcravebackend.model.Vendor">
+        update vendor set state = #{state} where id = #{id}
+    </update>
+
+    <update id="updateDate" parameterType="com.quickcravebackend.model.Vendor">
+        update vendor set date = #{date} where id = #{id}
+    </update>
+
+    <update id="updatePortrait" parameterType="com.quickcravebackend.model.Vendor">
+        update vendor set portrait = #{portrait} where id = #{id}
+    </update>
+
+    <update id="updateDescription" parameterType="com.quickcravebackend.model.Vendor">
+        update vendor set description = #{description} where id = #{id}
+    </update>
+
+    <update id="updateImage" parameterType="com.quickcravebackend.model.Vendor">
+        update vendor set image = #{image} where id = #{id}
+    </update>
+
+    <update id="updateCategory" parameterType="com.quickcravebackend.model.Vendor">
+        update vendor set category = #{category} where id = #{id}
+    </update>
+
+    <update id="updateTime" parameterType="com.quickcravebackend.model.Vendor">
+        update vendor set time = #{time} where id = #{id}
+    </update>
+
+    <update id="updateFee" parameterType="com.quickcravebackend.model.Vendor">
+        update vendor set fee = #{fee} where id = #{id}
+    </update>
+
+    <update id="quantity" parameterType="com.quickcravebackend.model.Vendor">
+        update vendor set quantity = #{quantity} where id = #{id}
+    </update>
 
 </mapper>

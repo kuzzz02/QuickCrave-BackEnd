@@ -15,8 +15,8 @@ public class GoodsController {
     private GoodsService_Imp goodsService_Imp;
 
     @PostMapping("/insert")
-    public Integer insert(String name, String description, String image, String state, String date, String price, String quantity, String discount, Long vendor_id){
-        return goodsService_Imp.insert(name, description, image, state, date, price, quantity, discount, vendor_id);
+    public Integer insert(String name, String description, String image, String number, String price, String discount, Long vendor_id){
+        return goodsService_Imp.insert(name, description, image, number, price, discount, vendor_id);
     }
 
     @DeleteMapping("/delete")
@@ -44,11 +44,6 @@ public class GoodsController {
         return goodsService_Imp.selectByName(name);
     }
 
-    @PutMapping("/update")
-    public Integer update(Long id) {
-        return goodsService_Imp.update(id);
-    }
-
     @PutMapping("/updateName")
     public Integer updateName(Long id, String name){
         return goodsService_Imp.updateName(id, name);
@@ -64,14 +59,9 @@ public class GoodsController {
         return goodsService_Imp.updateImage(id, image);
     }
 
-    @PutMapping("/updateState")
-    public Integer updateState(Long id, String state){
-        return goodsService_Imp.updateState(id, state);
-    }
-
-    @PutMapping("/updateDate")
-    public Integer updateDate(Long id, String date){
-        return goodsService_Imp.updateDate(id, date);
+    @PutMapping("/updateNumber")
+    public Integer updateNumber(Long id, String number){
+        return goodsService_Imp.updateNumber(id, number);
     }
 
     @PutMapping("/updatePrice")
@@ -82,11 +72,6 @@ public class GoodsController {
     @PutMapping("/updateDiscount")
     public Integer updateDiscount(Long id, String discount){
         return goodsService_Imp.updateDiscount(id, discount);
-    }
-
-    @PutMapping("/updateQuantity")
-    public Integer updateQuantity(Long id, String quantity){
-        return goodsService_Imp.updateQuantity(id, quantity);
     }
 
     @PutMapping("/updateVendor")
