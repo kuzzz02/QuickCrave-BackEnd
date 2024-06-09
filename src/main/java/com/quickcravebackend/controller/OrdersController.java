@@ -38,4 +38,9 @@ public class OrdersController {
     public Orders selectById(Long id){
         return ordersService_Imp.selectById(id);
     }
+
+    @PutMapping("/updateState")
+    public Integer updateState(Long id, String state){
+        return ordersService_Imp.updateState(id, state);
+    }
 }

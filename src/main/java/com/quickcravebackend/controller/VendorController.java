@@ -127,7 +127,7 @@ public class VendorController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Response> Login(Vendor vendor){
+    public ResponseEntity<Response> Login(@RequestBody Vendor vendor){
         Vendor newVendor = selectByName(vendor.getName());
         if(newVendor != null && Objects.equals(newVendor.getPassword(), vendor.getPassword())){
             return ResponseEntity.ok(new Response("success login"));

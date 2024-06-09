@@ -6,10 +6,12 @@ import com.alipay.api.domain.ExtUserInfo;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.response.AlipayTradeAppPayResponse;
 import com.alipay.api.response.AlipayTradePagePayResponse;
+import com.quickcravebackend.model.Orders;
 import org.springframework.web.bind.annotation.*;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradeAppPayRequest;
+import com.quickcravebackend.controller.OrdersController;
 
 @RestController
 @CrossOrigin
@@ -25,8 +27,11 @@ public class AlipayController {
     private final String returnUrl = "https://8.130.37.157:12581/alipay/return";
     private final String notifyUrl = "https://8.130.37.157:12581/alipay/notify";
 
+    OrdersController ordersController = new OrdersController();
+    private Long orders_id;
+
     @PostMapping("/pay")
-    public String pay() {
+    public String pay(@RequestBody Orders orders) {
         AlipayClient alipayClient = new DefaultAlipayClient(serverUrl, appId, privateKey, format, charset, alipayPublicKey, sign_type);
         AlipayTradeAppPayRequest alipayRequest = new AlipayTradeAppPayRequest();
         AlipayTradeAppPayModel model = new AlipayTradeAppPayModel();
@@ -34,18 +39,19 @@ public class AlipayController {
         alipayRequest.setNotifyUrl(notifyUrl);
 
         ExtUserInfo extUserInfo = new ExtUserInfo();
-        extUserInfo.setCertType("IDENTITY_CARD");
-        extUserInfo.setCertNo("360723200210222017");
-        extUserInfo.setName("phy");
-        extUserInfo.setMobile("13686808076");
-        extUserInfo.setMinAge("21");
+//        extUserInfo.setCertType("IDENTITY_CARD");
+//        extUserInfo.setCertNo("360723200210222017");
+//        extUserInfo.setMinAge("21");
+//        extUserInfo.setName(name);
+        extUserInfo.setMobile(orders.getPhone());
         extUserInfo.setNeedCheckInfo("F");
         model.setExtUserInfo(extUserInfo);
 
-        model.setOutTradeNo("111111");
-        model.setTotalAmount("99.99");
-        model.setSubject("TEST");
-        model.setBody("test");
+        this.orders_id = orders.getId();
+        model.setOutTradeNo(String.valueOf(orders_id));
+        model.setTotalAmount(orders.getTotal());
+        model.setSubject("ORDER");
+        model.setBody("order");
         model.setProductCode("QUICK_MSECURITY_PAY");
 
         alipayRequest.setBizModel(model);
@@ -61,13 +67,14 @@ public class AlipayController {
         return result;
     }
 
-    @PostMapping("/return")
-    public String returnUrl() {
+    @GetMapping("/return")
+    public String returnPay() {
         return "success";
     }
 
     @PostMapping("/notify")
-    public String notifyUrl() {
+    public String notifyPay() {
+        ordersController.updateState(this.orders_id, "PAID");
         return "success";
     }
 }

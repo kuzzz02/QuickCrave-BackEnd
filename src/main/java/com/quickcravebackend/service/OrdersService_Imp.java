@@ -36,4 +36,9 @@ public class OrdersService_Imp implements OrdersService{
     public Orders selectById(Long id) {
         return ordersMapper.selectById(id);
     }
+
+    @Override
+    public Integer updateState(Long id, String state) {
+        return ordersMapper.updateState(id, state);
+    }
 }

@@ -20,4 +20,6 @@ public interface OrdersMapper {
     List<Orders> selectAll();
 
     Orders selectById(Long id);
+
+    Integer updateState(Long id, String state);
 }
