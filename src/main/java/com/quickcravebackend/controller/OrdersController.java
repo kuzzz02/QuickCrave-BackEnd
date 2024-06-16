@@ -28,16 +28,6 @@ public class OrdersController {
         return ResponseEntity.ok(newOrders);
     }
 
-    @DeleteMapping("/delete")
-    public Integer delete(Long id){
-        return ordersService_Imp.delete(id);
-    }
-
-    @DeleteMapping("/deleteAll")
-    public Integer deleteAll(){
-        return ordersService_Imp.deleteAll();
-    }
-
     @GetMapping("/selectAll")
     public List<Orders> selectAll(){
         return ordersService_Imp.selectAll();
@@ -46,6 +36,16 @@ public class OrdersController {
     @GetMapping("/selectByOrdersId")
     public Orders selectByOrdersId(String orders_id){
         return ordersService_Imp.selectByOrdersId(orders_id);
+    }
+
+    @DeleteMapping("/delete")
+    public Integer delete(Long id){
+        return ordersService_Imp.delete(id);
+    }
+
+    @DeleteMapping("/deleteAll")
+    public Integer deleteAll(){
+        return ordersService_Imp.deleteAll();
     }
 
     @PutMapping("/updateState")

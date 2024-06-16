@@ -12,11 +12,15 @@ public interface DeliveryService {
 
     Delivery selectByName(String name);
 
+    Delivery selectById(Long id);
+
+    List<Delivery> selectByState(String state);
+
     Integer delete(Long id);
+
+    Integer deleteAll();
 
     Integer update(Long id, String name, String password);
 
-    Delivery selectById(Long id);
-
-    Integer deleteAll();
+    Integer updateState(Long id, String state);
 }

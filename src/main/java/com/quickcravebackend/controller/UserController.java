@@ -22,10 +22,33 @@ public class UserController {
         return userService_Imp.insert(name,password,address,phone);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<Response> Login(@RequestBody User user) {
+        User newUser = selectByName(user.getName());
+        if(newUser != null && Objects.equals(newUser.getPassword(), user.getPassword())){
+            return ResponseEntity.ok(new Response("success login"));
+        }
+        else {
+            return ResponseEntity.ok(new Response("fail to login"));
+        }
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<Response> Register(@RequestBody User user) {
+        if(user.getName() != null && user.getPassword() != null && selectByName(user.getName()) == null){
+            insert(user.getName(),user.getPassword(),user.getAddress(),user.getPhone());
+            return ResponseEntity.ok(new Response("success register"));
+        }
+        else {
+            return ResponseEntity.ok(new Response("fail to register"));
+        }
+    }
+
     @GetMapping("/selectAll")
     public List<User> selectAll() {
         return userService_Imp.selectAll();
     }
+
     @GetMapping("/selectByName")
     public User selectByName(String name) {
         return userService_Imp.selectByName(name);
@@ -49,28 +72,6 @@ public class UserController {
     @PutMapping("/update")
     public Integer update(Long id, String name, String password){
         return userService_Imp.update(id, name, password);
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<Response> Login(@RequestBody User user) {
-        User newUser = selectByName(user.getName());
-        if(newUser != null && Objects.equals(newUser.getPassword(), user.getPassword())){
-            return ResponseEntity.ok(new Response("success login"));
-        }
-        else {
-            return ResponseEntity.ok(new Response("fail to login"));
-        }
-    }
-
-    @PostMapping("/signup")
-    public ResponseEntity<Response> Register(@RequestBody User user) {
-        if(user.getName() != null && user.getPassword() != null && selectByName(user.getName()) == null){
-            insert(user.getName(),user.getPassword(),user.getAddress(),user.getPhone());
-            return ResponseEntity.ok(new Response("success register"));
-        }
-        else {
-            return ResponseEntity.ok(new Response("fail to register"));
-        }
     }
 
 }

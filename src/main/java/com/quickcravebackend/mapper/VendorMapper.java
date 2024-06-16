@@ -17,13 +17,13 @@ public interface VendorMapper {
 
     Vendor selectByName(String name);
 
+    Vendor selectById(Long id);
+
     List<Vendor> selectByCategory(String category);
 
     List<Vendor> selectVendorWithGoods(Long id);
 
     Integer delete(Long id);
-
-    Vendor selectById(Long id);
 
     Integer deleteAll();
 

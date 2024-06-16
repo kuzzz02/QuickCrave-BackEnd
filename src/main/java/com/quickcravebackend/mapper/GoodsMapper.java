@@ -13,15 +13,15 @@ public interface GoodsMapper {
     @Options(useGeneratedKeys = true,keyProperty="id",keyColumn="id")
     Integer insert(String name, String description, String image, String number, String price, String discount, Long vendor_id);
 
-    Integer delete(Long id);
-
-    Integer deleteAll();
-
     List<Goods> selectAll();
+
+    Goods selectByName(String name);
 
     Goods selectById(Long id);
 
-    Goods selectByName(String name);
+    Integer delete(Long id);
+
+    Integer deleteAll();
 
     Integer updateName(Long id, String name);
 

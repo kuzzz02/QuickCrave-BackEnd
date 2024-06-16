@@ -18,6 +18,10 @@
         select * from vendor where name = #{name}
     </select>
 
+    <select id="selectById" resultType="com.quickcravebackend.model.Vendor" parameterType="Long">
+        select * from vendor where id = #{id}
+    </select>
+
     <select id="selectByCategory" resultType="com.quickcravebackend.model.Vendor" parameterType="String">
         select * from vendor where category = #{category}
     </select>
@@ -30,10 +34,6 @@
     <delete id="delete" parameterType="Long">
         delete from vendor where id = #{id}
     </delete>
-
-    <select id="selectById" resultType="com.quickcravebackend.model.Vendor" parameterType="Long">
-        select * from vendor where id = #{id}
-    </select>
 
     <delete id="deleteAll">
         delete  from vendor
@@ -91,7 +91,7 @@
         update vendor set fee = #{fee} where id = #{id}
     </update>
 
-    <update id="quantity" parameterType="com.quickcravebackend.model.Vendor">
+    <update id="updateQuantity" parameterType="com.quickcravebackend.model.Vendor">
         update vendor set quantity = #{quantity} where id = #{id}
     </update>
 
