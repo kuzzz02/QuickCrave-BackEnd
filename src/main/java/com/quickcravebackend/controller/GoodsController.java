@@ -19,6 +19,21 @@ public class GoodsController {
         return goodsService_Imp.insert(name, description, image, number, price, discount, vendor_id);
     }
 
+    @GetMapping("/selectAll")
+    public List<Goods> selectAll(){
+        return goodsService_Imp.selectAll();
+    }
+
+    @GetMapping("/selectByName")
+    public Goods selectByName(String name){
+        return goodsService_Imp.selectByName(name);
+    }
+
+    @GetMapping("/selectById")
+    public Goods selectById(Long id){
+        return goodsService_Imp.selectById(id);
+    }
+
     @DeleteMapping("/delete")
     public Integer delete(Long id){
         return goodsService_Imp.delete(id);
@@ -27,21 +42,6 @@ public class GoodsController {
     @DeleteMapping("/deleteAll")
     public Integer deleteAll(){
         return goodsService_Imp.deleteAll();
-    }
-
-    @GetMapping("/selectAll")
-    public List<Goods> selectAll(){
-        return goodsService_Imp.selectAll();
-    }
-
-    @GetMapping("/selectById")
-    public Goods selectById(Long id){
-        return goodsService_Imp.selectById(id);
-    }
-
-    @GetMapping("/selectByName")
-    public Goods selectByName(String name){
-        return goodsService_Imp.selectByName(name);
     }
 
     @PutMapping("/updateName")

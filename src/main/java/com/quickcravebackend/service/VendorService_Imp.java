@@ -27,6 +27,11 @@ public class VendorService_Imp implements VendorService{
     }
 
     @Override
+    public Vendor selectById(Long id){
+        return vendorMapper.selectById(id);
+    }
+
+    @Override
     public List<Vendor> selectByCategory(String category){
         return vendorMapper.selectByCategory(category);
     }
@@ -39,11 +44,6 @@ public class VendorService_Imp implements VendorService{
     @Override
     public Integer delete(Long id){
         return vendorMapper.delete(id);
-    }
-
-    @Override
-    public Vendor selectById(Long id){
-        return vendorMapper.selectById(id);
     }
 
     @Override

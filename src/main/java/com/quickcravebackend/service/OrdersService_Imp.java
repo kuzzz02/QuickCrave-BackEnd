@@ -18,16 +18,6 @@ public class OrdersService_Imp implements OrdersService{
     }
 
     @Override
-    public Integer delete(Long id) {
-        return ordersMapper.delete(id);
-    }
-
-    @Override
-    public Integer deleteAll() {
-        return ordersMapper.deleteAll();
-    }
-
-    @Override
     public List<Orders> selectAll() {
         return ordersMapper.selectAll();
     }
@@ -35,6 +25,16 @@ public class OrdersService_Imp implements OrdersService{
     @Override
     public Orders selectByOrdersId(String orders_id) {
         return ordersMapper.selectByOrdersId(orders_id);
+    }
+
+    @Override
+    public Integer delete(Long id) {
+        return ordersMapper.delete(id);
+    }
+
+    @Override
+    public Integer deleteAll() {
+        return ordersMapper.deleteAll();
     }
 
     @Override

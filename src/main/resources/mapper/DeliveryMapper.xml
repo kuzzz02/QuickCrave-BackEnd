@@ -17,20 +17,28 @@
         select * from delivery where name = #{name}
     </select>
 
+    <select id="selectById" resultType="com.quickcravebackend.model.Delivery" parameterType="Long">
+        select * from delivery where id = #{id}
+    </select>
+
+    <select id="selectByState" parameterType="String" resultType="com.quickcravebackend.model.Delivery">
+        select * from delivery where state = #{state}
+    </select>
+
     <delete id="delete" parameterType="Long">
         delete from delivery where id = #{id}
+    </delete>
+
+    <delete id="deleteAll">
+        delete  from delivery
     </delete>
 
     <update id="update" parameterType="com.quickcravebackend.model.Delivery">
         update delivery set name = #{name}, password = #{password} where id = #{id}
     </update>
 
-    <select id="selectById" resultType="com.quickcravebackend.model.Delivery" parameterType="Long">
-        select * from delivery where id = #{id}
-    </select>
-
-    <delete id="deleteAll">
-        delete  from delivery
-    </delete>
+    <update id="updateState" parameterType="com.quickcravebackend.model.Delivery">
+        update delivery set state = #{state} where id = #{id}
+    </update>
 
 </mapper>

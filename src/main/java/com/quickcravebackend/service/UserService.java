@@ -12,11 +12,11 @@ public interface UserService {
 
     User selectByName(String name);
 
-    Integer delete(Long id);
-
-    Integer update(Long id, String name, String password);
-
     User selectById(Long id);
 
+    Integer delete(Long id);
+
     Integer deleteAll();
+
+    Integer update(Long id, String name, String password);
 }

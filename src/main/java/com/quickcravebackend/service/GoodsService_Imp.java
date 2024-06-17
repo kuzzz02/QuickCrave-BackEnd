@@ -18,18 +18,13 @@ public class GoodsService_Imp implements GoodsService{
     }
 
     @Override
-    public Integer delete(Long id) {
-        return goodsMapper.delete(id);
-    }
-
-    @Override
-    public Integer deleteAll() {
-        return goodsMapper.deleteAll();
-    }
-
-    @Override
     public List<Goods> selectAll() {
         return goodsMapper.selectAll();
+    }
+
+    @Override
+    public Goods selectByName(String name) {
+        return goodsMapper.selectByName(name);
     }
 
     @Override
@@ -38,8 +33,13 @@ public class GoodsService_Imp implements GoodsService{
     }
 
     @Override
-    public Goods selectByName(String name) {
-        return goodsMapper.selectByName(name);
+    public Integer delete(Long id) {
+        return goodsMapper.delete(id);
+    }
+
+    @Override
+    public Integer deleteAll() {
+        return goodsMapper.deleteAll();
     }
 
     @Override

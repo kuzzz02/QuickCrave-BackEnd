@@ -27,22 +27,22 @@ public class UserService_Imp implements UserService{
     }
 
     @Override
-    public Integer delete(Long id){
-        return userMapper.delete(id);
-    }
-
-    @Override
-    public Integer update(Long id, String name, String password){
-        return userMapper.update(id, name, password);
-    }
-
-    @Override
     public User selectById(Long id){
         return userMapper.selectById(id);
     }
 
     @Override
+    public Integer delete(Long id){
+        return userMapper.delete(id);
+    }
+
+    @Override
     public Integer deleteAll(){
         return userMapper.deleteAll();
+    }
+
+    @Override
+    public Integer update(Long id, String name, String password){
+        return userMapper.update(id, name, password);
     }
 }

@@ -15,7 +15,7 @@ public class Orders {
     private Long id;
 
     /**
-     * orders_id: 订单号 至少16位
+     * orders_id: OrderNo, at least 16 figures
      */
     private String orders_id;
     private String goods_id;

@@ -27,8 +27,23 @@ public class DeliveryService_Imp implements DeliveryService {
     }
 
     @Override
+    public Delivery selectById(Long id) {
+        return deliveryMapper.selectById(id);
+    }
+
+    @Override
+    public List<Delivery> selectByState(String state) {
+        return deliveryMapper.selectByState(state);
+    }
+
+    @Override
     public Integer delete(Long id) {
         return deliveryMapper.delete(id);
+    }
+
+    @Override
+    public Integer deleteAll() {
+        return deliveryMapper.deleteAll();
     }
 
     @Override
@@ -37,12 +52,7 @@ public class DeliveryService_Imp implements DeliveryService {
     }
 
     @Override
-    public Delivery selectById(Long id) {
-        return deliveryMapper.selectById(id);
-    }
-
-    @Override
-    public Integer deleteAll() {
-        return deliveryMapper.deleteAll();
+    public Integer updateState(Long id, String state) {
+        return deliveryMapper.updateState(id,state);
     }
 }

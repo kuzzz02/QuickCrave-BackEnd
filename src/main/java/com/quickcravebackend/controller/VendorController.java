@@ -1,6 +1,6 @@
 package com.quickcravebackend.controller;
 
-import com.quickcravebackend.Utility.Response;
+import com.quickcravebackend.utility.Response;
 import com.quickcravebackend.model.Vendor;
 import com.quickcravebackend.service.VendorService_Imp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +20,28 @@ public class VendorController {
     @PostMapping("/insert")
     public Integer insert(String name, String password, String phone, String address, String portrait, String description, String image, String category){
         return vendorService_Imp.insert(name, password, phone, address, portrait, description, image, category);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Response> Login(@RequestBody Vendor vendor){
+        Vendor newVendor = selectByName(vendor.getName());
+        if(newVendor != null && Objects.equals(newVendor.getPassword(), vendor.getPassword())){
+            return ResponseEntity.ok(new Response("success login"));
+        }
+        else {
+            return ResponseEntity.ok(new Response("fail to login"));
+        }
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<Response> Register(@RequestBody Vendor vendor) {
+        if(vendor.getName() != null && vendor.getPassword() != null && selectByName(vendor.getName()) == null){
+            insert(vendor.getName(), vendor.getPassword(), vendor.getPhone(), vendor.getAddress(), vendor.getPortrait(), vendor.getDescription(), vendor.getImage(), vendor.getCategory());
+            return ResponseEntity.ok(new Response("success login"));
+        }
+        else {
+            return ResponseEntity.ok(new Response("fail to login"));
+        }
     }
 
     @GetMapping("/selectAll")
@@ -124,28 +146,6 @@ public class VendorController {
     @PutMapping("/updateQuantity")
     public Integer updateQuantity(Long id, String quantity){
         return vendorService_Imp.updateQuantity(id, quantity);
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<Response> Login(@RequestBody Vendor vendor){
-        Vendor newVendor = selectByName(vendor.getName());
-        if(newVendor != null && Objects.equals(newVendor.getPassword(), vendor.getPassword())){
-            return ResponseEntity.ok(new Response("success login"));
-        }
-        else {
-            return ResponseEntity.ok(new Response("fail to login"));
-        }
-    }
-
-    @PostMapping("/signup")
-    public ResponseEntity<Response> Register(@RequestBody Vendor vendor) {
-        if(vendor.getName() != null && vendor.getPassword() != null && selectByName(vendor.getName()) == null){
-            insert(vendor.getName(), vendor.getPassword(), vendor.getPhone(), vendor.getAddress(), vendor.getPortrait(), vendor.getDescription(), vendor.getImage(), vendor.getCategory());
-            return ResponseEntity.ok(new Response("success login"));
-        }
-        else {
-            return ResponseEntity.ok(new Response("fail to login"));
-        }
     }
 
 }
