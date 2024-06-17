@@ -26,9 +26,6 @@ public class Base {
     protected String state;
     protected String date;
 
-/**
-    image/portrait 指图片/头像
- **/
     protected String portrait;
     protected String description;
     protected String image;
